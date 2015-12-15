@@ -1,0 +1,11 @@
+Package: virtualmutationanalysis
+Title: Analysis of the Virtual Mutation Data
+Version: 0.0.0.9000
+Authors@R: person("Gregory", "Kapfhammer", email = "gkapfham@allegheny.edu", role = c("aut", "cre"))
+Description: Analysis of the Virtual Mutation Data
+Depends: R (>= 3.2.2)
+License: GPL
+LazyData: true
+Imports:
+  dplyr
+Suggests: testthat
