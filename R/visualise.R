@@ -15,6 +15,5 @@ visualise_mutation_score <- function(data) {
     ggplot2::ylab("Mutation Testing Score") +
     ggplot2::stat_summary(fun.y = mean, fill = "white", colour = "black", geom = "point", shape = 23, size = 1, show_guide = FALSE)
   return(p)
-
 }
 
