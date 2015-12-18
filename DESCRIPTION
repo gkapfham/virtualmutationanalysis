@@ -10,5 +10,6 @@ Imports:
   plyr,
   dplyr,
   readr,
-  ggplot2
+  ggplot2,
+  magrittr
 Suggests: testthat

@@ -3,3 +3,4 @@
 export(read_time_constrained_mutation_data)
 export(transform_time_constrained_data_for_scores)
 export(visualise_mutation_score)
+importFrom(magrittr,"%>%")
