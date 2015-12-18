@@ -25,7 +25,7 @@ visualise_mutation_score_time_constrained <- function(data) {
 #' @export
 
 visualise_mutation_totals_time_constrained <- function(data) {
-  p = ggplot2::ggplot(data,ggplot2::aes(x = schema, y = total_type, fill=total)) +
+  p = ggplot2::ggplot(data,ggplot2::aes(x = schema, y = total, fill=total_type)) +
     ggplot2::facet_grid(~dbms, labeller = ggplot2::label_parsed) +
     ggplot2::geom_bar(stat="identity", position="dodge") +
     ggplot2::theme_grey(base_size = 6) +
@@ -33,8 +33,7 @@ visualise_mutation_totals_time_constrained <- function(data) {
     ggplot2::theme(axis.text.x = ggplot2::element_text(angle = 45, hjust = 1, size = 4)) +
     ggplot2::theme(axis.text.y = ggplot2::element_text(angle = 45, hjust = 1, size = 4)) +
     ggplot2::xlab("Database Schema") +
-    ggplot2::ylab("Mutation Testing Score") +
-    ggplot2::stat_summary(fun.y = mean, fill = "white", colour = "black", geom = "point", shape = 23, size = 1, show.legend = FALSE)
+    ggplot2::ylab("Total Number of Mutants")
   return(p)
 }
 
