@@ -34,6 +34,7 @@ transform_time_constrained_data_for_totals <- function(d) {
     dplyr::mutate(total_type = plyr::revalue(total_type, c(
             "vm_total" = "Virtual",
             "selection_total" = "Time-Constrained"
-        )))
+        ))) %>%
+    dplyr::group_by(dbms, schema, total_type) %>% summarise(total=mean(total))
   return(tidy_data)
 }
