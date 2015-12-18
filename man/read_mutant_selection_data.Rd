@@ -2,15 +2,11 @@
 % Please edit documentation in R/read.R
 \name{read_mutant_selection_data}
 \alias{read_mutant_selection_data}
-\title{FUNCTION: read_mutant_selection_data
-Read the data file that contains the "mutant sample" data. This is the data file that allows us to compare mutation
-scores from the virtual mutation technique with scores when the original method is given the same amount of running
-time. Note that this data file is provided by the R package through the extdata directory.}
+\title{FUNCTION: read_mutant_selection_data}
 \usage{
 read_mutant_selection_data()
 }
 \description{
-FUNCTION: read_mutant_selection_data
 Read the data file that contains the "mutant sample" data. This is the data file that allows us to compare mutation
 scores from the virtual mutation technique with scores when the original method is given the same amount of running
 time. Note that this data file is provided by the R package through the extdata directory.

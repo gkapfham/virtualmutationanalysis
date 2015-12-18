@@ -9,5 +9,6 @@ LazyData: true
 Imports:
   plyr,
   dplyr,
-  readr
+  readr,
+  ggplot2
 Suggests: testthat
