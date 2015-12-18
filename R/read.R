@@ -1,12 +1,12 @@
-#' FUNCTION: read_mutant_selection_data
+#' FUNCTION: read_time_constrained_mutation_data
 #'
-#' Read the data file that contains the "mutant sample" data. This is the data file that allows us to compare mutation
-#' scores from the virtual mutation technique with scores when the original method is given the same amount of running
-#' time. Note that this data file is provided by the R package through the extdata directory.
+#' Read the data file that contains the "time-constrained mutation" data. This is the data file that allows us to
+#' compare mutation scores from the virtual mutation technique with scores when the original method is given the same
+#' amount of running time as virtual mutation. (Phil previously called this "mutant selection").
 #' @export
 
-read_mutant_selection_data <- function() {
-  f = system.file("extdata", "mutant_selection.dat", package="virtualmutationanalysis")
+read_time_constrained_mutation_data <- function() {
+  f = system.file("extdata", "time_constrained_mutation.dat", package="virtualmutationanalysis")
   d = readr::read_csv(f)
   return(dplyr::tbl_df(d))
 }
