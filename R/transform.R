@@ -28,6 +28,7 @@ transform_time_constrained_data_for_scores <- function(d) {
 transform_time_constrained_data_for_totals <- function(d) {
   # go from data that is column-oriented to row-oriented
   # change the name of the values to be better for graphing
+  # summarise and group_by the data to prepare for a bar plot geom
   tidy_data <- d %>%
     dplyr::select(one_of(c("dbms", "schema", "vm_total", "selection_total"))) %>%
     tidyr::gather(total_type, total, vm_total:selection_total) %>%
