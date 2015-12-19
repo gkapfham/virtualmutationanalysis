@@ -61,6 +61,6 @@ test_that("The transformed data frame always contains certain attributes", {
 test_that("The transformed data frame contains the correct number of rows", {
   d <- read_time_constrained_mutation_data()
   dt <- transform_time_constrained_data_for_totals(d)
-  expect_that(nrow(dt), equals(66))
+  expect_that(nrow(dt), equals(16*3*2))
 })
 
