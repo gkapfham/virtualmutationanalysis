@@ -2,5 +2,8 @@
 
 export(read_time_constrained_mutation_data)
 export(transform_time_constrained_data_for_scores)
-export(visualise_mutation_score)
+export(transform_time_constrained_data_for_totals)
+export(visualise_mutation_score_time_constrained)
+export(visualise_mutation_totals_time_constrained)
+export(visualise_save_graphic)
 importFrom(magrittr,"%>%")
