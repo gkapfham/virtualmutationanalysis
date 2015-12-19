@@ -6,10 +6,11 @@ Description: Analysis of the Virtual Mutation Data
 Depends: R (>= 3.2.2)
 License: GPL
 LazyData: true
-Imports:
+Imports: 
   plyr,
   dplyr,
   readr,
   ggplot2,
-  magrittr
+  magrittr,
+    broom
 Suggests: testthat
