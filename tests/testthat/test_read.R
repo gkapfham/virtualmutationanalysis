@@ -9,3 +9,8 @@ test_that("The time constrained mutation data file has a total of 1440 rows of d
   expect_that(nrow(d), equals(ns*nd*nt))
 })
 
+test_that("The time constrained mutation data file has a total of 10 columns of data", {
+  d <- read_time_constrained_mutation_data()
+  expect_that(ncol(d), equals(10))
+})
+
