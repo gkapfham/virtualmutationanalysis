@@ -29,6 +29,7 @@ transform_time_constrained_data_for_totals <- function(d) {
   # go from data that is column-oriented to row-oriented
   # change the name of the values to be better for graphing
   # summarise and group_by the data to prepare for a bar plot geom
+  # ungroup the data so that can be access correctly later on
   tidy_data <- d %>%
     dplyr::select(one_of(c("dbms", "schema", "vm_total", "selection_total"))) %>%
     tidyr::gather(total_type, total, vm_total:selection_total) %>%
@@ -36,6 +37,7 @@ transform_time_constrained_data_for_totals <- function(d) {
             "vm_total" = "Virtual",
             "selection_total" = "Time-Constrained"
         ))) %>%
-    dplyr::group_by(dbms, schema, total_type) %>% summarise(total=mean(total))
+    dplyr::group_by(dbms, schema, total_type) %>% summarise(total=mean(total)) %>%
+    ungroup()
   return(tidy_data)
 }
