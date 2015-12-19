@@ -5,7 +5,7 @@
 #' @export
 
 visualise_mutation_score_time_constrained <- function(data) {
-  p = ggplot2::ggplot(data,ggplot2::aes(x = schema, y = score)) +
+  p <- ggplot2::ggplot(data,ggplot2::aes(x = schema, y = score)) +
     ggplot2::facet_grid(score_type~dbms, labeller = ggplot2::label_parsed) +
     ggplot2::geom_boxplot(outlier.size = 0.75, lwd = 0.25) +
     ggplot2::theme_grey(base_size = 6) +
@@ -25,7 +25,7 @@ visualise_mutation_score_time_constrained <- function(data) {
 #' @export
 
 visualise_mutation_totals_time_constrained <- function(data) {
-  p = ggplot2::ggplot(data,ggplot2::aes(x = schema, y = total, fill=total_type)) +
+  p <- ggplot2::ggplot(data,ggplot2::aes(x = schema, y = total, fill=total_type)) +
     ggplot2::facet_grid(~dbms, labeller = ggplot2::label_parsed) +
     ggplot2::geom_bar(stat="identity", position="dodge") +
     ggplot2::theme_grey(base_size = 6) +
