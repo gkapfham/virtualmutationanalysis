@@ -23,10 +23,10 @@ subset_chosen_schemas <- function(d, m) {
 
 #' FUNCTION: subset_correct_pipeline_schemas
 #'
-#' Extract only those schemas that were run with the correct mutationpipeline, for consistent results.
+#' Extract only those schemas that were run with the correct mutation pipeline, for consistent results.
 #' @export
 
-subset_correct_pipeline_schemas <- function(v, d) {
+subset_correct_pipeline_schemas <- function(d, v) {
   # extract the names of the schemas that do not have correct data
   incorrect_schemas <- v %>%
     select(dbms, schema, mutationpipeline) %>%
