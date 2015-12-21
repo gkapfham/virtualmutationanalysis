@@ -20,3 +20,20 @@ subset_chosen_schemas <- function(d, m) {
   ds <- semi_join(d, m, by="schema")
   return(ds)
 }
+
+#' FUNCTION: subset_correct_pipeline_schemas
+#'
+#' Extract only those schemas that were run with the correct mutationpipeline, for consistent results.
+#' @export
+
+subset_correct_pipeline_schemas <- function(v, d) {
+  # extract the names of the schemas that do not have correct data
+  incorrect_schemas <- v %>%
+    select(dbms, schema, mutationpipeline) %>%
+    filter(mutationpipeline %in% c("AllOperatorsNormalisedWithRemovers")) %>%
+    distinct(schema)
+  # only consider the schemas that did not use the newer (and, not comparable) schema
+  ds <- anti_join(d, incorrect_schemas, by="schema")
+  return(ds)
+}
+
