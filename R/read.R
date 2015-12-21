@@ -21,7 +21,7 @@ read_time_constrained_mutation_data <- function() {
 
 read_virtual_mutation_data <- function() {
   f <- system.file("extdata", "virtual_mutation.dat", package="virtualmutationanalysis")
-  d <- readr::read_csv(f) %>% transform_mutation_for_attributes()
+  d <- readr::read_csv(f) %>% rename_mutation_for_attributes()
   return(dplyr::tbl_df(d))
 }
 
