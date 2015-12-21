@@ -1,4 +1,4 @@
-### Context: test cases for reading in the data files
+### Context: test cases for checking the correlations
 context("correlation")
 
 test_that("The correlation test returns a single row of data for the time constrained data", {
