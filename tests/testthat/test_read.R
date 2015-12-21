@@ -28,6 +28,15 @@ test_that("The virtual mutation data file has a total of 3060 rows of data", {
   expect_that(nrow(d), equals(3060 - (6*30)))
 })
 
+test_that("The virtual mutation data file (subset) has a total of 1440 rows of data", {
+  d <- read_virtual_mutation_data_subset()
+  ns <- nrow(d %>% select(schema) %>% unique())
+  nd <- nrow(d %>% select(dbms) %>% unique())
+  nt <- 30
+  expect_that(ns*nd*nt, equals(1440))
+  expect_that(nrow(d), equals(16*3*30))
+})
+
 ### Context: test cases for reading in the data file for original mutation data
 context("read-original-mutation")
 
@@ -38,5 +47,14 @@ test_that("The original mutation data file has a total of 3060 rows of data", {
   nt <- 30
   expect_that(ns*nd*nt, equals(3060))
   expect_that(nrow(d), equals(3060))
+})
+
+test_that("The original mutation data file (subset) has a total of 1440 rows of data", {
+  d <- read_original_mutation_data_subset()
+  ns <- nrow(d %>% select(schema) %>% unique())
+  nd <- nrow(d %>% select(dbms) %>% unique())
+  nt <- 30
+  expect_that(ns*nd*nt, equals(1440))
+  expect_that(nrow(d), equals(16*3*30))
 })
 
