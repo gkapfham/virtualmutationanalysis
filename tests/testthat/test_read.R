@@ -24,8 +24,8 @@ test_that("The virtual mutation data file has a total of 3060 rows of data", {
   nd <- nrow(d %>% select(dbms) %>% unique())
   nt <- 30
   expect_that(ns*nd*nt, equals(3060))
-  # TODO: This should be passing and it is not!
-  # expect_that(nrow(d), equals(3060))
+  # the data file is missing data for six Schema/DBMS combinations (so 6*30 = 180 missing rows)
+  expect_that(nrow(d), equals(3060 - (6*30)))
 })
 
 ### Context: test cases for reading in the data file for original mutation data
