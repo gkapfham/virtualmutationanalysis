@@ -31,3 +31,12 @@ test_that("Subsetting the data leaves only the chosen schemas for the AST 2016 p
   expect_that(nrow(dss), equals(16))
 })
 
+test_that("Subsetting the data leaves only the correct and chosen schemas for the AST 2016 paper - virtual", {
+  d <- read_virtual_mutation_data()
+  m <- read_time_constrained_mutation_data()
+  ds <- subset_chosen_schemas(d, m)
+  dss <- ds %>% select(schema) %>% unique()
+  expect_that(nrow(dss), equals(16))
+  dss_pipeline <- subset_correct_pipeline_schemas(ds, ds) %>% select(schema) %>% unique()
+  expect_that(nrow(dss_pipeline), equals(9))
+})
