@@ -35,6 +35,7 @@ read_virtual_mutation_data <- function() {
 
 read_original_mutation_data <- function() {
   f <- system.file("extdata", "original_mutation.dat", package="virtualmutationanalysis")
-  d <- readr::read_csv(f) %>% rename_mutation_for_attributes()
+  # 1. Read the CSV data file, 2. Use the standard naming convention, 3. Only use the avsDefaults data generator
+  d <- readr::read_csv(f) %>% rename_mutation_for_attributes() %>% subset_data_generator()
   return(dplyr::tbl_df(d))
 }
