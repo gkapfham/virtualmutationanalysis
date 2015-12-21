@@ -63,14 +63,18 @@ read_original_mutation_data <- function() {
 #'
 #' Read the data file that contains the "original mutation" data. This is the data file that contains the data about
 #' original mutation (i.e., mutation that interacts with a DBMS). Data has been subset for the 16 chosen schemas for AST 2016.
+#' Then, the data is further subset to the 9 schemas that contain a consistent mutation pipeline through all experiments.
 #' @importFrom magrittr %>%
 #' @export
 
 read_original_mutation_data_subset <- function() {
-  f <- system.file("extdata", "original_mutation.dat", package="virtualmutationanalysis")
-  m <- system.file("extdata", "time_constrained_mutation.dat", package="virtualmutationanalysis")
-  df <- readr::read_csv(f) %>% rename_mutation_for_attributes() %>% subset_data_generator()
-  dm <- readr::read_csv(m)
-  df <- subset_chosen_schemas(df,dm)
+  o <- system.file("extdata", "original_mutation.dat", package="virtualmutationanalysis")
+  t <- system.file("extdata", "time_constrained_mutation.dat", package="virtualmutationanalysis")
+  v <- system.file("extdata", "virtual_mutation.dat", package="virtualmutationanalysis")
+  do <- readr::read_csv(o) %>% rename_mutation_for_attributes() %>% subset_data_generator()
+  dv <- readr::read_csv(v) %>% rename_mutation_for_attributes()
+  dt <- readr::read_csv(t)
+  dc <- subset_chosen_schemas(do,dt)
+  dcc <- subset_correct_pipeline_schemas(dc, dv)
   return(dplyr::tbl_df(df))
 }
