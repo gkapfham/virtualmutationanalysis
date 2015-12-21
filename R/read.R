@@ -16,10 +16,25 @@ read_time_constrained_mutation_data <- function() {
 #' Read the data file that contains the "virtual mutation" data. This is the data file that contains the data about
 #' virtual mutation (i.e., mutation using a model of the DBMS). Note that it contains data for more schemas than can
 #' actually be used in the AST 2016 paper submission.
+#' @importFrom magrittr %>%
 #' @export
 
 read_virtual_mutation_data <- function() {
   f <- system.file("extdata", "virtual_mutation.dat", package="virtualmutationanalysis")
-  d <- readr::read_csv(f)
+  d <- readr::read_csv(f) %>% transform_mutation_for_attributes()
+  return(dplyr::tbl_df(d))
+}
+
+#' FUNCTION: read_original_mutation_data
+#'
+#' Read the data file that contains the "original mutation" data. This is the data file that contains the data about
+#' original mutation (i.e., mutation that interacts with a DBMS). Note that it contains data for more schemas than can
+#' actually be used in the AST 2016 paper submission.
+#' @importFrom magrittr %>%
+#' @export
+
+read_original_mutation_data <- function() {
+  f <- system.file("extdata", "original_mutation.dat", package="virtualmutationanalysis")
+  d <- readr::read_csv(f) %>% rename_mutation_for_attributes()
   return(dplyr::tbl_df(d))
 }
