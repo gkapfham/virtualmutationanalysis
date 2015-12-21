@@ -48,6 +48,6 @@ test_that("Subsetting the data leaves only the correct and chosen schemas for th
   ds <- subset_chosen_schemas(do, m)
   dss <- ds %>% select(schema) %>% unique()
   expect_that(nrow(dss), equals(16))
-  dss_pipeline <- subset_correct_pipeline_schemas(dv, ds) %>% select(schema) %>% unique()
+  dss_pipeline <- subset_correct_pipeline_schemas(ds, dv) %>% select(schema) %>% unique()
   expect_that(nrow(dss_pipeline), equals(9))
 })
