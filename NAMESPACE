@@ -2,9 +2,12 @@
 
 export(calculate_mutation_score_correlation)
 export(read_original_mutation_data)
+export(read_original_mutation_data_subset)
 export(read_time_constrained_mutation_data)
 export(read_virtual_mutation_data)
+export(read_virtual_mutation_data_subset)
 export(rename_mutation_for_attributes)
+export(subset_chosen_schemas)
 export(subset_data_generator)
 export(summarise_unique_attributes)
 export(transform_time_constrained_data_for_scores)

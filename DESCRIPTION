@@ -12,5 +12,6 @@ Imports:
   readr,
   ggplot2,
   magrittr,
-    broom
+    broom,
+    tidyr
 Suggests: testthat
