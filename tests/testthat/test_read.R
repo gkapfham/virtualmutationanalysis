@@ -15,7 +15,7 @@ test_that("The time constrained mutation data file has a total of 10 columns of 
   expect_that(ncol(d), equals(10))
 })
 
-### Context: test cases for reading in the data files for time constrained mutation
+### Context: test cases for reading in the data file for the virtual mutation data
 context("read-virtual-mutation")
 
 # test_that("The virtual mutation data file has a total of 2880 rows of data", {
@@ -26,4 +26,7 @@ context("read-virtual-mutation")
 #   expect_that(ns*nd*nt, equals(2880))
 #   expect_that(nrow(d), equals(ns*nd*nt))
 # })
+
+### Context: test cases for reading in the data file for original mutation data
+context("read-original-mutation")
 
