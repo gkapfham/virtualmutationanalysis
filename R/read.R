@@ -76,5 +76,5 @@ read_original_mutation_data_subset <- function() {
   dt <- readr::read_csv(t)
   dc <- subset_chosen_schemas(do,dt)
   dcc <- subset_correct_pipeline_schemas(dc, dv)
-  return(dplyr::tbl_df(df))
+  return(dplyr::tbl_df(dcc))
 }
