@@ -10,6 +10,15 @@ test_that("The time constrained mutation data file has a total of 1440 rows of d
   expect_that(nrow(d), equals(ns*nd*nt))
 })
 
+test_that("The time constrained mutation data file has a total of 810 rows of data when subset", {
+  d <- read_time_constrained_mutation_data_subset()
+  ns <- nrow(d %>% select(schema) %>% unique())
+  nd <- nrow(d %>% select(dbms) %>% unique())
+  nt <- 30
+  expect_that(ns*nd*nt, equals(810))
+  expect_that(nrow(d), equals(ns*nd*nt))
+})
+
 test_that("The time constrained mutation data file has a total of 10 columns of data", {
   d <- read_time_constrained_mutation_data()
   expect_that(ncol(d), equals(10))

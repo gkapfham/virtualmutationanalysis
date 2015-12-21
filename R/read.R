@@ -11,6 +11,24 @@ read_time_constrained_mutation_data <- function() {
   return(dplyr::tbl_df(d))
 }
 
+#' FUNCTION: read_time_constrained_mutation_data_subset
+#'
+#' Read the data file that contains the "time-constrained mutation" data. This is the data file that allows us to
+#' compare mutation scores from the virtual mutation technique with scores when the original method is given the same
+#' amount of running time as virtual mutation. (Phil previously called this "mutant selection").  Also, the data is
+#' further subset to the 9 schemas that contain a consistent mutation pipeline through all experiments.
+#' @export
+
+read_time_constrained_mutation_data_subset <- function() {
+  t <- system.file("extdata", "time_constrained_mutation.dat", package="virtualmutationanalysis")
+  v <- system.file("extdata", "virtual_mutation.dat", package="virtualmutationanalysis")
+  dt <- readr::read_csv(t)
+  dv <- readr::read_csv(v) %>% rename_mutation_for_attributes()
+  dct <- subset_correct_pipeline_schemas(dt, dv)
+  return(dplyr::tbl_df(dct))
+}
+
+
 #' FUNCTION: read_virtual_mutation_data
 #'
 #' Read the data file that contains the "virtual mutation" data. This is the data file that contains the data about
