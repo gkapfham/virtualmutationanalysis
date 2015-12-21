@@ -30,16 +30,18 @@ read_virtual_mutation_data <- function() {
 #'
 #' Read the data file that contains the "virtual mutation" data. This is the data file that contains the data about
 #' virtual mutation (i.e., mutation using a model of the DBMS). Data has been subset for the 16 chosen schemas for AST 2016.
+#' Then, the data is further subset to the 9 schemas that contain a consistent mutation pipeline through all experiments.
 #' @importFrom magrittr %>%
 #' @export
 
 read_virtual_mutation_data_subset <- function() {
-  f <- system.file("extdata", "virtual_mutation.dat", package="virtualmutationanalysis")
-  m <- system.file("extdata", "time_constrained_mutation.dat", package="virtualmutationanalysis")
-  df <- readr::read_csv(f) %>% rename_mutation_for_attributes()
-  dm <- readr::read_csv(m)
-  df <- subset_chosen_schemas(df,dm)
-  return(dplyr::tbl_df(df))
+  v <- system.file("extdata", "virtual_mutation.dat", package="virtualmutationanalysis")
+  t <- system.file("extdata", "time_constrained_mutation.dat", package="virtualmutationanalysis")
+  dv <- readr::read_csv(v) %>% rename_mutation_for_attributes()
+  dt <- readr::read_csv(t)
+  dc <- subset_chosen_schemas(dv, dt)
+  dcc <- subset_correct_pipeline_schemas(dc, dc)
+  return(dplyr::tbl_df(dcc))
 }
 
 #' FUNCTION: read_original_mutation_data
