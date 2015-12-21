@@ -49,12 +49,12 @@ test_that("The original mutation data file has a total of 3060 rows of data", {
   expect_that(nrow(d), equals(3060))
 })
 
-test_that("The original mutation data file (subset) has a total of 1440 rows of data", {
+test_that("The original mutation data file (subset) has a total of 1440 (now 810) rows of data", {
   d <- read_original_mutation_data_subset()
   ns <- nrow(d %>% select(schema) %>% unique())
   nd <- nrow(d %>% select(dbms) %>% unique())
   nt <- 30
-  expect_that(ns*nd*nt, equals(1440))
-  expect_that(nrow(d), equals(16*3*30))
+  expect_that(ns*nd*nt, equals(810))
+  expect_that(nrow(d), equals(9*3*30))
 })
 
