@@ -90,5 +90,13 @@ test_that("The original mutation (HyperSQL) data file has a total of nine schema
   expect_that(nd, equals(1))
 })
 
+### Context: test cases for reading in the data file for original mutation data (SQLite)
+context("read-original-mutation-sqlite")
 
-
+test_that("The original mutation (SQLite) data file has a total of nine schemas and one dbms", {
+  d <- read_original_mutation_data_sqlite_subset()
+  ns <- nrow(d %>% select(schema) %>% unique())
+  nd <- nrow(d %>% select(dbms) %>% unique())
+  expect_that(ns, equals(9))
+  expect_that(nd, equals(1))
+})
