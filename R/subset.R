@@ -32,7 +32,7 @@ subset_correct_pipeline_schemas <- function(d, v) {
     select(dbms, schema, mutationpipeline) %>%
     filter(mutationpipeline %in% c("AllOperatorsNormalisedWithRemovers")) %>%
     distinct(schema)
-  # only consider the schemas that did not use the newer (and, not comparable) schema
+  # only consider the schemas that did not use the newer (and, not comparable) schemas
   ds <- anti_join(d, incorrect_schemas, by="schema")
   return(ds)
 }
