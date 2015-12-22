@@ -95,3 +95,23 @@ read_original_mutation_data_subset <- function() {
   dcc <- subset_correct_pipeline_schemas(dc, dv) %>% replace_original_technique()
   return(dplyr::tbl_df(dcc))
 }
+
+#' FUNCTION: read_original_mutation_data_postgres_subset
+#'
+#' Read the data file that contains the "original mutation" data. This is the data file that contains the data about
+#' original mutation (i.e., mutation that interacts with a DBMS), but only for the Postgres DBMS. This is the data file
+#' that contains the correct timings for each of the individuals mutants that were run during the mutation analysis.
+#' @importFrom magrittr %>%
+#' @export
+
+read_original_mutation_data_postgres_subset <- function() {
+  o <- system.file("extdata", "postgres_original_mutation.dat", package="virtualmutationanalysis")
+  t <- system.file("extdata", "time_constrained_mutation.dat", package="virtualmutationanalysis")
+  v <- system.file("extdata", "virtual_mutation.dat", package="virtualmutationanalysis")
+  do <- readr::read_csv(o)
+  dv <- readr::read_csv(v) %>% rename_mutation_for_attributes()
+  dt <- readr::read_csv(t)
+  dc <- subset_chosen_schemas(do,dt)
+  dcc <- subset_correct_pipeline_schemas(dc, dv)
+  return(dplyr::tbl_df(dcc))
+}
