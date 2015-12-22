@@ -2,7 +2,9 @@
 
 export(calculate_mutation_score_correlation)
 export(read_original_mutation_data)
+export(read_original_mutation_data_hypersql_subset)
 export(read_original_mutation_data_postgres_subset)
+export(read_original_mutation_data_sqlite_subset)
 export(read_original_mutation_data_subset)
 export(read_time_constrained_mutation_data)
 export(read_time_constrained_mutation_data_subset)
