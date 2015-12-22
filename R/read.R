@@ -57,7 +57,7 @@ read_virtual_mutation_data_subset <- function() {
   dv <- readr::read_csv(v) %>% rename_mutation_for_attributes()
   dt <- readr::read_csv(t)
   dc <- subset_chosen_schemas(dv, dt)
-  dcc <- subset_correct_pipeline_schemas(dc, dc)
+  dcc <- subset_correct_pipeline_schemas(dc, dc) %>% replace_virtual_technique()
   return(dplyr::tbl_df(dcc))
 }
 
@@ -92,6 +92,6 @@ read_original_mutation_data_subset <- function() {
   dv <- readr::read_csv(v) %>% rename_mutation_for_attributes()
   dt <- readr::read_csv(t)
   dc <- subset_chosen_schemas(do,dt)
-  dcc <- subset_correct_pipeline_schemas(dc, dv)
+  dcc <- subset_correct_pipeline_schemas(dc, dv) %>% replace_original_technique()
   return(dplyr::tbl_df(dcc))
 }
