@@ -1,5 +1,5 @@
 ### Context: test cases for subsetting the data frames
-context("subset")
+context("subset-original-and-virtual")
 
 test_that("Subsetting the data leaves only the avsDefaults datagenerator - original", {
   d <- read_original_mutation_data()

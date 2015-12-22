@@ -1,5 +1,5 @@
 ### Context: test cases for checking the correlations
-context("correlation")
+context("time-constrained-correlation")
 
 test_that("The correlation test returns a single row of data for the time constrained data", {
   d <- read_time_constrained_mutation_data()
