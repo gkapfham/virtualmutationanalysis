@@ -15,10 +15,17 @@ test_that("Replacement on original mutation gives the correct technique name", {
   expect_that(nrow(drw), equals(1))
 })
 
-test_that("Replacement on virtual mutation gives the correct technique name", {
+test_that("Replacement on virtual mutation does not gives the old technique name", {
   d <- read_virtual_mutation_data_subset()
   dr <- d %>% replace_virtual_technique()
-  drw <- dr %>% filter(technique %in% c("virtual")) %>% distinct()
+  drw <- dr %>% filter(technique %in% c("virtual")) %>% select(technique) %>% distinct()
   expect_that(nrow(drw), equals(0))
+})
+
+test_that("Replacement on virtual mutation does gives the correct technique name", {
+  d <- read_virtual_mutation_data_subset()
+  dr <- d %>% replace_virtual_technique()
+  drw <- dr %>% filter(technique %in% c("Virtual")) %>% select(technique) %>% distinct()
+  expect_that(nrow(drw), equals(1))
 })
 
