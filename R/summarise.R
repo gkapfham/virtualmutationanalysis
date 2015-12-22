@@ -1,6 +1,6 @@
 #' FUNCTION: summarise_unique_attributes
 #'
-#' Renames the mutation data so that it uses the correct attribute names.
+#' Summarises the unique attributes, primarily used for debugging.
 #' @importFrom magrittr %>%
 #' @export
 
@@ -9,9 +9,9 @@ summarise_unique_attributes <- function(d) {
   d %>% dplyr::summarise_each(funs(dplyr::n_distinct)) %>% dplyr::glimpse()
 }
 
-#' FUNCTION: summarise_unique_attributes
+#' FUNCTION: summarise_mutation_analysis
 #'
-#' Renames the mutation data so that it uses the correct attribute names.
+#' Summarise an entire data frame (for a single DBMS) to accumulate the required data for the "original" technique.
 #' @importFrom magrittr %>%
 #' @export
 
