@@ -28,7 +28,6 @@ read_time_constrained_mutation_data_subset <- function() {
   return(dplyr::tbl_df(dct))
 }
 
-
 #' FUNCTION: read_virtual_mutation_data
 #'
 #' Read the data file that contains the "virtual mutation" data. This is the data file that contains the data about
