@@ -37,3 +37,14 @@ subset_correct_pipeline_schemas <- function(d, v) {
   return(ds)
 }
 
+#' FUNCTION: subset_all_attributes_except_identifier
+#'
+#' Subsets out all of the attributes except for the (no longer needed) identifier attribute.
+#' @importFrom magrittr %>%
+#' @export
+
+subset_all_attributes_except_identifier <- function(d) {
+  # subset out all of the attributes with the exception of the identifier attribute
+  ds <- d %>% select(-identifier)
+  return(ds)
+}
