@@ -70,3 +70,12 @@ test_that("Subsetting out the identifier attribute removes it from the data fram
   expect_that(ncol(d), equals(5))
 })
 
+### Context: test cases for subsetting the virtual
+context("subset-virtual")
+
+test_that("Subsetting out the identifier attribute removes it from the data frame", {
+  d <- read_virtual_mutation_data_subset() %>% subset_virtual_attributes()
+  expect_that(ncol(d), equals(7))
+})
+
+
