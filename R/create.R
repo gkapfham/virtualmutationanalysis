@@ -16,11 +16,12 @@ create_original_data <- function() {
   return(hps)
 }
 
-#' FUNCTION: create_dbms_data
+#' FUNCTION: create_virtual_data
 #'
-#' Create virtual data from the virtual data file, then transform it and munge it into the right format.
+#' Read virtual data from the virtual data file, then transform it and munge it into the right format.
 #' @importFrom magrittr %>%
 #' @export
 
 create_virtual_data <- function() {
+  v <- read_virtual_mutation_data_subset()
 }
