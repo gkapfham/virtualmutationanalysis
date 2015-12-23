@@ -12,7 +12,3 @@ create_dbms_data <- function(h, p, s) {
   hps <- hps %>% dplyr::mutate(technique="Original")
   return(hps)
 }
-
-
-
-
