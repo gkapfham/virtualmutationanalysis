@@ -17,7 +17,7 @@ subset_data_generator <- function(d) {
 subset_chosen_schemas <- function(d, m) {
   # subset a provided data frame (like the one for virtual or original mutation) so that it only contains the
   # observations for the schemas present in the data frame called m (like the time constrained mutation data)
-  ds <- semi_join(d, m, by="schema")
+  ds <- dplyr::semi_join(d, m, by="schema")
   return(ds)
 }
 
@@ -29,11 +29,11 @@ subset_chosen_schemas <- function(d, m) {
 subset_correct_pipeline_schemas <- function(d, v) {
   # extract the names of the schemas that do not have correct data
   incorrect_schemas <- v %>%
-    select(dbms, schema, mutationpipeline) %>%
-    filter(mutationpipeline %in% c("AllOperatorsNormalisedWithRemovers")) %>%
-    distinct(schema)
+    dplyr::select(dbms, schema, mutationpipeline) %>%
+    dplyr::filter(mutationpipeline %in% c("AllOperatorsNormalisedWithRemovers")) %>%
+    dplyr::distinct(schema)
   # only consider the schemas that did not use the newer (and, not comparable) schemas
-  ds <- anti_join(d, incorrect_schemas, by="schema")
+  ds <- dplyr::anti_join(d, incorrect_schemas, by="schema")
   return(ds)
 }
 
@@ -45,6 +45,6 @@ subset_correct_pipeline_schemas <- function(d, v) {
 
 subset_all_attributes_except_identifier <- function(d) {
   # subset out all of the attributes with the exception of the identifier attribute
-  ds <- d %>% select(-identifier)
+  ds <- d %>% dplyr::select(-identifier)
   return(ds)
 }
