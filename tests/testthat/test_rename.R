@@ -9,4 +9,3 @@ test_that("It works to rename the casestudy attribute to the schema attribute", 
   dc <- d %>% select(contains("casestudy"))
   expect_that(ncol(dc), equals(0))
 })
-
