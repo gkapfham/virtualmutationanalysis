@@ -51,3 +51,19 @@ test_that("Subsetting the data leaves only the correct and chosen schemas for th
   dss_pipeline <- subset_correct_pipeline_schemas(ds, dv) %>% select(schema) %>% unique()
   expect_that(nrow(dss_pipeline), equals(9))
 })
+
+test_that("Subsetting out the identifier attribute removes it from the data frame", {
+  d <- read_original_mutation_data_postgres_subset() %>% summarise_mutation_analysis() %>% subset_all_attributes_except_identifier()
+  expect_that(ncol(d), equals(5))
+})
+
+test_that("Subsetting out the identifier attribute removes it from the data frame", {
+  d <- read_original_mutation_data_hypersql_subset() %>% summarise_mutation_analysis() %>% subset_all_attributes_except_identifier()
+  expect_that(ncol(d), equals(5))
+})
+
+test_that("Subsetting out the identifier attribute removes it from the data frame", {
+  d <- read_original_mutation_data_sqlite_subset() %>% summarise_mutation_analysis() %>% subset_all_attributes_except_identifier()
+  expect_that(ncol(d), equals(5))
+})
+
