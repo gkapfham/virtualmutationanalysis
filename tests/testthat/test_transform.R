@@ -1,5 +1,5 @@
 ### Context: test cases for transforming data frames
-context("transform-scores")
+context("transform-mutation-scores")
 
 test_that("The transformed data frame no longer contains certain attributes", {
   d <- read_time_constrained_mutation_data()
@@ -63,4 +63,12 @@ test_that("The transformed data frame contains the correct number of rows", {
   dt <- transform_time_constrained_data_for_totals(d)
   expect_that(nrow(dt), equals(16*3*2))
 })
+
+### Context: test cases for transforming data frames
+context("transform-mutation-times")
+
+test_that("The transformed data frame no longer contains certain attributes", {
+  d <- read_virtual_mutation_data_subset()
+})
+
 
