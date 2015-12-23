@@ -41,3 +41,15 @@ transform_time_constrained_data_for_totals <- function(d) {
     ungroup()
   return(tidy_data)
 }
+
+#' FUNCTION: transform_virtual_mutation_time
+#'
+#' Transform the virtual mutation data file so that it is has a single attribute for mutation analysis time.
+#' @importFrom magrittr %>%
+#' @export
+
+transform_virtual_mutation_time <- function(d) {
+  dt <- d %>% dplyr::mutate(mutationanalysistime = originalresultstime + mutationanalysistime)
+  return(dt)
+}
+
