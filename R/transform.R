@@ -49,7 +49,10 @@ transform_time_constrained_data_for_totals <- function(d) {
 #' @export
 
 transform_virtual_mutation_time <- function(d) {
+  # compute the mutation analysis time according to the given formula, that is both "original" and "mutation" analysis
   dt <- d %>% dplyr::mutate(mutationanalysistime = originalresultstime + mutationanalysistime)
-  return(dt)
+  # delete the old "originalresultstime" attribute as it is no longer needed and is incompatible with the original data
+  dts <- dt %>% dplyr::select(-originalresultstime)
+  return(dts)
 }
 

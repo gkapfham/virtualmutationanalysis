@@ -69,6 +69,9 @@ context("transform-mutation-times")
 
 test_that("The transformed data frame no longer contains certain attributes", {
   d <- read_virtual_mutation_data_subset()
+  expect_that(ncol(d), equals(7))
+  dt <- d %>% transform_virtual_mutation_time()
+  expect_that(ncol(dt), equals(6))
 })
 
 
