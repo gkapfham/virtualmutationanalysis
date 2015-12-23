@@ -57,7 +57,7 @@ read_virtual_mutation_data_subset <- function() {
   dv <- readr::read_csv(v) %>% rename_mutation_for_attributes()
   dt <- readr::read_csv(t)
   dc <- subset_chosen_schemas(dv, dt)
-  dcc <- subset_correct_pipeline_schemas(dc, dc) %>% replace_virtual_technique()
+  dcc <- subset_correct_pipeline_schemas(dc, dc) %>% replace_virtual_technique() %>% subset_virtual_attributes()
   return(dplyr::tbl_df(dcc))
 }
 
