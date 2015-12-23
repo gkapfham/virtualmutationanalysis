@@ -57,8 +57,6 @@ visualise_mutation_time_original <- function(data) {
   return(p)
 }
 
-
-
 #' FUNCTION: visualise_save_graphic
 #'
 #' Saves the provided graphic to the provided name.
