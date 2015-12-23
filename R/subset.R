@@ -48,3 +48,15 @@ subset_all_attributes_except_identifier <- function(d) {
   ds <- d %>% dplyr::select(-identifier)
   return(ds)
 }
+
+#' FUNCTION: subset_virtual_attributes
+#'
+#' Subsets out the attributes that are most relevant to the virtual mutation data analysis.
+#' @importFrom magrittr %>%
+#' @export
+
+subset_virtual_attributes <- function(d) {
+  # subset out all of the attributes
+  ds <- d %>% dplyr::select(one_of("dbms", "schema", "technique", "scorenumerator", "scoredenominator", "originalresultstime", "mutationanalysistime"))
+  return(ds)
+}
