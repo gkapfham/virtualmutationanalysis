@@ -39,11 +39,24 @@ summarise_mutation_analysis <- function(d) {
 #' @export
 
 summarise_mutation_analysis_time <- function(d) {
-  # summarise_each makes it easier to see the unique levels for each attribute
+  # compute the median and mean time values for both original and virtual
   ds <- d %>% dplyr::group_by(schema, dbms, technique) %>%
-    dplyr::summarise(medianmutationanalysistime=median(mutationanalysistime),
-                      meanmutationanalysistime=mean(mutationanalysistime))
-  return(ds)
+    dplyr::summarise(mediantime=median(mutationanalysistime),
+                      meantime=mean(mutationanalysistime))
+  # extract the data values for the original technique and make new separate columns
+  dso <- ds %>% dplyr::filter(technique %in% c("Original")) %>%
+    dplyr::select(meantime, mediantime) %>%
+    dplyr::mutate(meantimeo=meantime, mediantimeo=mediantime) %>%
+    dplyr::select(-meantime, -mediantime)
+  # extract the data values for the virtual technique and make new separate columns
+  dsv <- ds %>% dplyr::filter(technique %in% c("Virtual")) %>%
+    dplyr::select(meantime, mediantime) %>%
+    dplyr::mutate(meantimev=meantime, mediantimev=mediantime) %>%
+    dplyr::select(-meantime, -mediantime)
+  # combine these two new (admittedly "non-tidy") data frames to make a new joined data frame
+  # add in "winner" attributes, making checking of the data very easy to complete
+  dsov <- dplyr::right_join(dso, dsv, by = c("schema" = "schema", "dbms" = "dbms")) %>%
+    dplyr::mutate(meanwinner=ifelse(meantimeo>meantimev, "Original", "Virtual")) %>%
+    dplyr::mutate(medianwinner=ifelse(mediantimeo>mediantimev, "Original", "Virtual"))
+  return(dsov)
 }
-
-
