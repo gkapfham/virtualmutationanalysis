@@ -66,8 +66,8 @@ visualise_mutation_time_original_virtual <- function(data) {
 visualise_savings_and_mutants <- function(data) {
   p <- ggplot2::ggplot(data, ggplot2::aes(x = mutantcount, y = saving_percent*100, shape = dbms)) +
     ggplot2::geom_point(size = 2) +
-    ggplot2::ylab("Mean time saved (ms)") +
-    ggplot2::xlab("Number of mutants") +
+    ggplot2::ylab("Percentage of Mean Time Saved") +
+    ggplot2::xlab("Number of Mutants") +
     ggplot2::scale_shape(guide = ggplot2::guide_legend(title = "DBMS"), solid=FALSE) +
     ggplot2::theme_grey(base_size = 6) +
     ggplot2::scale_colour_discrete(guide=ggplot2::guide_legend(title = "DBMS"))
