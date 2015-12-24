@@ -32,3 +32,16 @@ summarise_mutation_analysis <- function(d) {
   return(ns)
 }
 
+#' FUNCTION: summarise_mutation_analysis_time
+#'
+#' Summarise the mutation timing values for both the original and the virtual techniques, supporting comparisons.
+#' @importFrom magrittr %>%
+#' @export
+
+summarise_mutation_analysis_time <- function(d) {
+  # summarise_each makes it easier to see the unique levels for each attribute
+  ds <- d %>% dplyr::group_by(schema, dbms, technique) %>% dplyr::summarise(meanmutationanalysistime=mean(mutationanalysistime))
+  return(ds)
+}
+
+
