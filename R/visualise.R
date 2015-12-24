@@ -58,6 +58,22 @@ visualise_mutation_time_original_virtual <- function(data) {
   return(p)
 }
 
+#' FUNCTION: visualise_savings_and_mutants
+#'
+#' Visualize the time savings with respect to the total number of mutants analysed.
+#' @export
+
+visualise_savings_and_mutants <- function(data) {
+  p <- data %>% ggplot(aes(x=mutantcount,y=saving,colour=dbms,shape=dbms)) +
+    geom_point(size=2) +
+    ylab("Mean time saved (ms)") +
+    xlab("Number of mutants") +
+    scale_shape(guide=guide_legend(title="DBMS"),solid=FALSE) +
+    scale_colour_discrete(guide=guide_legend(title="DBMS")) +
+    facet_wrap(~dbms,scales="free_y")
+  return(p)
+}
+
 #' FUNCTION: visualise_save_graphic
 #'
 #' Saves the provided graphic to the provided name.
