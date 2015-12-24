@@ -23,6 +23,6 @@ create_original_data <- function() {
 #' @export
 
 create_virtual_data <- function() {
-  v <- read_virtual_mutation_data_subset()
+  v <- read_virtual_mutation_data_subset() %>% transform_virtual_mutation_time()
   return(v)
 }
