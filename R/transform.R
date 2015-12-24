@@ -56,3 +56,20 @@ transform_virtual_mutation_time <- function(d) {
   return(dts)
 }
 
+#' FUNCTION: transform_mutation_time_savings
+#'
+#' Transform the combined data file so that it has a new attribute about the savings of using virtual mutation.
+#' @importFrom magrittr %>%
+#' @export
+
+transform_mutation_time_savings <- function(d) {
+  ds <- d %>%
+    group_by(technique,schema,dbms) %>%
+    summarise(time = mean(mutationanalysistime)) %>%
+    spread(technique,time) %>%
+    mutate(
+           saving=Original-Virtual,
+           saving.percent=1-Virtual/Original)
+  return(ds)
+}
+
