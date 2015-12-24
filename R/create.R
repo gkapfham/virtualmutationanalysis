@@ -24,4 +24,5 @@ create_original_data <- function() {
 
 create_virtual_data <- function() {
   v <- read_virtual_mutation_data_subset()
+  return(v)
 }
