@@ -73,9 +73,9 @@ transform_mutation_time_savings <- function(d) {
            saving_percent = 1 - Virtual / Original
            )
   # extract only the scoredenominator and the attributes needed for joining which the previously constructed data frame
-  dl <- d %>% select(-mutationanalysistime, -scorenumerator, -technique) %>%
-    group_by(dbms, schema) %>% distinct() %>%
-    rename(mutantcount = scoredenominator)
+  dl <- d %>% dplyr::select(-mutationanalysistime, -scorenumerator, -technique) %>%
+    dplyr::group_by(dbms, schema) %>% dplyr::distinct() %>%
+    dply::rename(mutantcount = scoredenominator)
   # join these two data frames together so that we have savings and the number of mutants in the data frame
   dsmc <- dplyr::right_join(ds, dl, c("schema" = "schema", "dbms" = "dbms"))
   return(dsmc)
