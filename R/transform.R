@@ -63,15 +63,19 @@ transform_virtual_mutation_time <- function(d) {
 #' @export
 
 transform_mutation_time_savings <- function(d) {
+  # calculate the savings and percentage savings associated with using virtual instead of original
   ds <- d %>%
     dplyr::group_by(technique,schema,dbms) %>%
     dplyr::summarise(time = mean(mutationanalysistime)) %>%
     tidyr::spread(technique,time) %>%
     dplyr::mutate(
-           saving=Original-Virtual,
-           saving.percent=1-Virtual/Original
+           saving = Original - Virtual,
+           saving_percent = 1 - Virtual / Original
            )
-  dl <- d %>% select(-mutationanalysistime, -scorenumerator, -technique) %>% group_by(dbms, schema) %>% distinct()
+  # extract only the scoredenominator and the attributes needed for joining which the previously constructed data frame
+  dl <- d %>% select(-mutationanalysistime, -scorenumerator, -technique) %>% 
+    group_by(dbms, schema) %>% distinct()
+  # join these two data frames together so that we have savings and the number of mutants in the data frame
   dsmc <- dplyr::right_join(ds, dl, c("schema" = "schema", "dbms" = "dbms"))
   return(dsmc)
 }
