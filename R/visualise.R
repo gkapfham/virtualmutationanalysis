@@ -76,6 +76,24 @@ visualise_savings_and_mutants <- function(data) {
   return(p)
 }
 
+#' FUNCTION: visualise_savings_and_tests
+#'
+#' Visualize the time savings with respect to the total number of tests that must be run.
+#' @export
+
+visualise_savings_and_tests <- function(data) {
+  p <- ggplot2::ggplot(data, ggplot2::aes(x = testcount, y = saving_percent*100, shape = dbms)) +
+    ggplot2::geom_point(size = 2) +
+    ggplot2::ylab("Percentage of Mean Time Saved") +
+    ggplot2::xlab("Number of Tests") +
+    ggplot2::scale_shape(guide = ggplot2::guide_legend(title = ""), solid = FALSE) +
+    ggplot2::theme_grey(base_size = 6) +
+    ggplot2::theme(title = ggplot2::element_text(size=6), legend.position = "top")
+    # since there are a smaller number of data points, it is acceptable to have a single graph
+    # ggplot2::facet_wrap(~dbms, scales = "free_y")
+  return(p)
+}
+
 #' FUNCTION: visualise_save_graphic
 #'
 #' Saves the provided graphic to the provided name.
