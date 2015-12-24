@@ -26,3 +26,16 @@ create_virtual_data <- function() {
   v <- read_virtual_mutation_data_subset() %>% transform_virtual_mutation_time()
   return(v)
 }
+
+#' FUNCTION: create_original_and_virtual_data
+#'
+#' Create a combined data file that contains both the original and the virtual data sets.
+#' @importFrom magrittr %>%
+#' @export
+
+create_original_and_virtual_data <- function() {
+  o <- create_original_data()
+  v <- create_virtual_data()
+  ov <- dplyr::bind_rows(o, v)
+  return(ov)
+}
