@@ -56,7 +56,7 @@ summarise_mutation_analysis_time <- function(d) {
   # combine these two new (admittedly "non-tidy") data frames to make a new joined data frame
   # add in "winner" attributes, making checking of the data very easy to complete
   dsov <- dplyr::right_join(dso, dsv, by = c("schema" = "schema", "dbms" = "dbms")) %>%
-    dplyr::mutate(meanwinner=ifelse(meantimeo>meantimev, "Original", "Virtual")) %>%
-    dplyr::mutate(medianwinner=ifelse(mediantimeo>mediantimev, "Original", "Virtual"))
+    dplyr::mutate(meanwinner=ifelse(meantimeo<meantimev, "Original", "Virtual")) %>%
+    dplyr::mutate(medianwinner=ifelse(mediantimeo<mediantimev, "Original", "Virtual"))
   return(dsov)
 }
