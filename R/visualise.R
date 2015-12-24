@@ -43,16 +43,17 @@ visualise_mutation_totals_time_constrained <- function(data) {
 #' Visualize the execution time of the original mutation analysis technique.
 #' @export
 
-visualise_mutation_time_original <- function(data) {
+visualise_mutation_time_original_virtual <- function(data) {
   p <- ggplot2::ggplot(data,ggplot2::aes(x = schema, y = mutationanalysistime)) +
-    ggplot2::facet_grid(~dbms, labeller = ggplot2::label_parsed) +
+    ggplot2::facet_grid(technique~dbms, labeller = ggplot2::label_parsed) +
     ggplot2::geom_boxplot(outlier.size = 0.75, lwd = 0.25) +
+    ggplot2::scale_y_log10() +
     ggplot2::theme_grey(base_size = 6) +
     ggplot2::theme(title = ggplot2::element_text(size=6)) +
     ggplot2::theme(axis.text.x = ggplot2::element_text(angle = 45, hjust = 1, size = 4)) +
     ggplot2::theme(axis.text.y = ggplot2::element_text(angle = 45, hjust = 1, size = 4)) +
     ggplot2::xlab("Database Schema") +
-    ggplot2::ylab("Mutation Analysis Time") +
+    ggplot2::ylab("Mutation Analysis Time (Log Transformed)") +
     ggplot2::stat_summary(fun.y = mean, fill = "white", colour = "black", geom = "point", shape = 23, size = 1, show.legend = FALSE)
   return(p)
 }
