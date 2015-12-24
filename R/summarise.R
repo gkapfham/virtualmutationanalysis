@@ -40,7 +40,9 @@ summarise_mutation_analysis <- function(d) {
 
 summarise_mutation_analysis_time <- function(d) {
   # summarise_each makes it easier to see the unique levels for each attribute
-  ds <- d %>% dplyr::group_by(schema, dbms, technique) %>% dplyr::summarise(meanmutationanalysistime=mean(mutationanalysistime))
+  ds <- d %>% dplyr::group_by(schema, dbms, technique) %>%
+    dplyr::summarise(medianmutationanalysistime=median(mutationanalysistime),
+                      meanmutationanalysistime=mean(mutationanalysistime))
   return(ds)
 }
 
