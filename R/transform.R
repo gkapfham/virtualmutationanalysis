@@ -62,7 +62,7 @@ transform_virtual_mutation_time <- function(d) {
 #' @importFrom magrittr %>%
 #' @export
 
-transform_mutation_time_savings <- function(d) {
+transform_mutation_time_savings <- function(d, o) {
   # calculate the savings and percentage savings associated with using virtual instead of original
   ds <- d %>%
     dplyr::group_by(technique,schema,dbms) %>%
@@ -78,6 +78,12 @@ transform_mutation_time_savings <- function(d) {
     dplyr::rename(mutantcount = scoredenominator)
   # join these two data frames together so that we have savings and the number of mutants in the data frame
   dsmc <- dplyr::right_join(ds, dl, c("schema" = "schema", "dbms" = "dbms"))
-  return(dsmc)
+  # extract only the tests and the attributes needed for joining from the other provided data frame
+  ol <- o %>% dplyr::select(tests, dbms, schema) %>%
+    dplyr::group_by(dbms, schema) %>% dplyr::distinct() %>%
+    dplyr::rename(testcount = tests)
+  # join these two data frames together so that we have savings and the number of mutants in the data frame
+  dsmct <- dplyr::right_join(dsmc, ol, c("schema" = "schema", "dbms" = "dbms"))
+  return(dsmct)
 }
 
