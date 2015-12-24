@@ -64,12 +64,15 @@ transform_virtual_mutation_time <- function(d) {
 
 transform_mutation_time_savings <- function(d) {
   ds <- d %>%
-    group_by(technique,schema,dbms) %>%
-    summarise(time = mean(mutationanalysistime)) %>%
-    spread(technique,time) %>%
-    mutate(
+    dplyr::group_by(technique,schema,dbms) %>%
+    dplyr::summarise(time = mean(mutationanalysistime)) %>%
+    tidyr::spread(technique,time) %>%
+    dplyr::mutate(
            saving=Original-Virtual,
-           saving.percent=1-Virtual/Original)
-  return(ds)
+           saving.percent=1-Virtual/Original
+           )
+  dl <- d %>% select(-mutationanalysistime, -scorenumerator, -technique) %>% group_by(dbms, schema) %>% distinct()
+  dsmc <- dplyr::right_join(ds, dl, c("schema" = "schema", "dbms" = "dbms"))
+  return(dsmc)
 }
 
