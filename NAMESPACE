@@ -2,6 +2,7 @@
 
 export(calculate_mutation_score_correlation)
 export(combine_dbms_data)
+export(create_original_and_virtual_data)
 export(create_original_data)
 export(create_virtual_data)
 export(read_original_mutation_data)
