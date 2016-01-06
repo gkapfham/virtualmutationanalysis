@@ -14,10 +14,10 @@ transform_time_constrained_data_for_scores <- function(d) {
     dplyr::mutate(score_type = plyr::revalue(score_type, c(
             "vm_score" = "Virtual",
             "selection_score" = "Time-Constrained"
-        ))) %>%
+            ))) %>%
     dplyr::mutate(dbms = plyr::revalue(dbms, c(
             "Postgres" = "PostgreSQL"
-        )))
+            )))
   return(tidy_data)
 }
 
@@ -39,10 +39,10 @@ transform_time_constrained_data_for_totals <- function(d) {
     dplyr::mutate(total_type = plyr::revalue(total_type, c(
             "vm_total" = "Virtual",
             "selection_total" = "Time-Constrained"
-        ))) %>%
+            ))) %>%
     dplyr::mutate(dbms = plyr::revalue(dbms, c(
             "Postgres" = "PostgreSQL"
-        ))) %>%
+            ))) %>%
   dplyr::group_by(dbms, schema, total_type) %>% summarise(total=mean(total)) %>%
     ungroup()
   return(tidy_data)
