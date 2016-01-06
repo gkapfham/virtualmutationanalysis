@@ -14,7 +14,11 @@ transform_time_constrained_data_for_scores <- function(d) {
     dplyr::mutate(score_type = plyr::revalue(score_type, c(
             "vm_score" = "Virtual",
             "selection_score" = "Time-Constrained"
+        ))) %>%
+    dplyr::mutate(dbms = plyr::revalue(dbms, c(
+            "Postgres" = "PostgreSQL"
         )))
+
   return(tidy_data)
 }
 
