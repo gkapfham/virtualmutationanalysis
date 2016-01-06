@@ -60,5 +60,3 @@ test_that("The summarised original data set for SQLite has 270 rows", {
   expect_that(ns*nd*nt, equals(54))
   expect_that(nrow(d), equals(ns*nd*nt))
 })
-
-
