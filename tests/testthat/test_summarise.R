@@ -56,7 +56,6 @@ test_that("The summarised original data set for SQLite has 270 rows", {
   d <- create_original_and_virtual_data() %>% summarise_mutation_analysis_time()
   ns <- 9
   nd <- 3
-  nt <- 2
-  expect_that(ns*nd*nt, equals(54))
-  expect_that(nrow(d), equals(ns*nd*nt))
+  expect_that(ns*nd, equals(27))
+  expect_that(nrow(d), equals(ns*nd))
 })
