@@ -50,8 +50,8 @@ visualise_mutation_time_original_virtual <- function(data) {
     ggplot2::scale_y_log10() +
     ggplot2::theme_grey(base_size = 6) +
     ggplot2::theme(title = ggplot2::element_text(size=6)) +
-    ggplot2::theme(axis.text.x = ggplot2::element_text(angle = 45, hjust = 1, size = 4)) +
-    ggplot2::theme(axis.text.y = ggplot2::element_text(angle = 45, hjust = 1, size = 4)) +
+    ggplot2::theme(axis.text.x = ggplot2::element_text(angle = 45, hjust = 1, size = 5)) +
+    ggplot2::theme(axis.text.y = ggplot2::element_text(angle = 45, hjust = 1, size = 5)) +
     ggplot2::xlab("Database Schema") +
     ggplot2::ylab("Mutation Analysis Time (Log Transformed)") +
     ggplot2::stat_summary(fun.y = mean, fill = "white", colour = "black", geom = "point", shape = 23, size = 1, show.legend = FALSE)
