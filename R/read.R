@@ -92,7 +92,10 @@ read_original_mutation_data_subset <- function() {
   dv <- readr::read_csv(v) %>% rename_mutation_for_attributes()
   dt <- readr::read_csv(t)
   dc <- subset_chosen_schemas(do,dt)
-  dcc <- subset_correct_pipeline_schemas(dc, dv) %>% replace_original_technique()
+  dcc <- subset_correct_pipeline_schemas(dc, dv) %>% replace_original_technique() %>%
+    dplyr::mutate(dbms = plyr::revalue(dbms, c(
+            "Postgres" = "PostgreSQL"
+            )))
   return(dplyr::tbl_df(dcc))
 }
 
