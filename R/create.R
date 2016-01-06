@@ -36,6 +36,9 @@ create_virtual_data <- function() {
 create_original_and_virtual_data <- function() {
   o <- create_original_data()
   v <- create_virtual_data()
-  ov <- dplyr::bind_rows(o, v)
+  ov <- dplyr::bind_rows(o, v) %>%
+    dplyr::mutate(dbms = plyr::revalue(dbms, c(
+            "Postgres" = "PostgreSQL"
+            )))
   return(ov)
 }
