@@ -56,6 +56,7 @@ test_that("The summarised data set for both original and virtual has 27 rows", {
   d <- create_original_and_virtual_data() %>% summarise_mutation_analysis_time()
   ns <- 9
   nd <- 3
+  # note that there are no trials now since this is a summarised data set
   expect_that(ns*nd, equals(27))
   expect_that(nrow(d), equals(ns*nd))
 })
