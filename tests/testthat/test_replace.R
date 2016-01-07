@@ -11,7 +11,7 @@ test_that("Replacement on original mutation does not give the old technique name
 test_that("Replacement on original mutation gives the correct technique name", {
   d <- read_original_mutation_data_subset()
   dr <- d %>% replace_original_technique()
-  drw <- dr %>% filter(technique %in% c("Original")) %>% select(technique) %>% distinct()
+  drw <- dr %>% filter(technique %in% c("Standard")) %>% select(technique) %>% distinct()
   expect_that(nrow(drw), equals(1))
 })
 

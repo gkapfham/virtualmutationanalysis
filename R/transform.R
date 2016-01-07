@@ -75,8 +75,8 @@ transform_mutation_time_savings <- function(d, o) {
     dplyr::summarise(time = mean(mutationanalysistime)) %>%
     tidyr::spread(technique,time) %>%
     dplyr::mutate(
-           saving = Original - Virtual,
-           saving_percent = (Original - Virtual) / Original
+           saving = Standard - Virtual,
+           saving_percent = (Standard - Virtual) / Standard
            )
   # extract only the scoredenominator and the attributes needed for joining which the previously constructed data frame
   dl <- d %>% dplyr::select(-mutationanalysistime, -scorenumerator, -technique) %>%

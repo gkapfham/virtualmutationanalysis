@@ -12,7 +12,7 @@ create_original_data <- function() {
   # combine these three data frames into a single data frame
   hps <- combine_dbms_data(h, p, s)
   # add in an attribute signalling that this is the Original data set
-  hps <- hps %>% dplyr::mutate(technique="Original")
+  hps <- hps %>% dplyr::mutate(technique="Standard")
   return(hps)
 }
 
