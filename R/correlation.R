@@ -8,7 +8,7 @@
 
 calculate_mutation_score_correlation <- function(data) {
   model <- cor.test(data$vm_score, data$selection_score, method="kendall", use="pairwise")
-  tidy_model <- model %>% tidy()
+  tidy_model <- model %>% broom::tidy()
   return(tidy_model)
 }
 
