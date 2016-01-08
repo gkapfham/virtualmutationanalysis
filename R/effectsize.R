@@ -76,13 +76,6 @@ effectsize_default <- function(d,f) {
               rank.sum = r1))
 }
 
-#' Calculate the Vargha-Delaney Effect Size using the approach closest to published SBSE papers.
-#' @export
-
-test_mine <- function() {
-
-}
-
 #' FUNCTION: effectsize_default
 #'
 
