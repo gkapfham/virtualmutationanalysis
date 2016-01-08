@@ -23,7 +23,7 @@ analyse_wilcox_rank_sum_test <- function(d) {
 #' @importFrom magrittr %>%
 #' @export
 
-analyse_vargha_delaney_effect_size <- function(d, e) {
+analyse_vargha_delaney_effect_size_specify <- function(d, e) {
   # extract the relevant data values for the standard method
   standard_time = d %>% dplyr::filter(technique %in% c("Standard"))
   # extract the relevant data values for the virtual method
@@ -33,4 +33,16 @@ analyse_vargha_delaney_effect_size <- function(d, e) {
   # passing the parameters in the opposite order will yield the opposite conclusion for the data sets
   model <- e(virtual_time$mutationanalysistime, standard_time$mutationanalysistime)
   return(model)
+}
+
+#' FUNCTION: analyse_vargha_delaney_effect_size
+#'
+
+#' Perform an effect size analysis of the timings for the standard and virtual mutation analysis techniques.
+#' By default, specify that the calculation should use the effectsize_accurate function for calculating the statistic.
+#' @importFrom magrittr %>%
+#' @export
+
+analyse_vargha_delaney_effect_size <- function(d) {
+  analyse_vargha_delaney_effect_size_specify(d, effectsize_accurate)
 }
