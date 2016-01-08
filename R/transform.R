@@ -93,3 +93,15 @@ transform_mutation_time_savings <- function(d, o) {
   return(dsmct)
 }
 
+#' FUNCTION: transform_execution_times_for_threshold
+
+#' Transform the timing values so that they do not include any below 100 ms. This is the widely agreed on
+#' value below which a human cannot perceive differences (see the SSBSE 2015 paper for support for this statement).
+#' @importFrom magrittr %>%
+#' @export
+
+transform_execution_times_for_threshold <- function(d) {
+  td <- d %>%
+    dplyr::mutate(mutationanalysistime=ifelse(mutationanalysistime<100, 0, mutationanalysistime))
+  return(td)
+}
