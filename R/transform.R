@@ -101,7 +101,17 @@ transform_mutation_time_savings <- function(d, o) {
 #' @export
 
 transform_execution_times_for_threshold_default <- function(d) {
+  return(transform_execution_times_for_threshold(d, 100))
+}
+
+#' FUNCTION: transform_execution_times_for_threshold
+
+#' Transform the timing values so that they do not include any below a specified number of ms.
+#' @importFrom magrittr %>%
+#' @export
+
+transform_execution_times_for_threshold <- function(d, t) {
   td <- d %>%
-    dplyr::mutate(mutationanalysistime=ifelse(mutationanalysistime<100, 0, mutationanalysistime))
+    dplyr::mutate(mutationanalysistime=ifelse(mutationanalysistime<t, 0, mutationanalysistime))
   return(td)
 }
