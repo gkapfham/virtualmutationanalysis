@@ -114,4 +114,3 @@ effectsize_wright <- function(sample1, sample2) {
                size = size,
                rank.sum = rank.sum))
 }
-
