@@ -51,7 +51,7 @@ analyse_vargha_delaney_effect_size <- function(d) {
 
 #' Perform an effect size analysis of the timings for the standard and virtual mutation analysis techniques.
 #' By default, specify that the calculation should use the effectsize_accurate function for calculating the statistic.
-#' Bur, investigate the effect size with different levels of thresholding, to establish sensitivity.
+#' But, investigate the effect size with different levels of thresholding, to establish sensitivity.
 #' @export
 
 analyse_vargha_delaney_effect_size_thresholding <- function(d) {
