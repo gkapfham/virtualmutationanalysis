@@ -18,6 +18,74 @@ effectsize_interpret <- function(a) {
   return(size)
 }
 
+#' FUNCTION: effectsize_calculate_accurate
+#'
+
+#' Calculate the actual Vargha-Delaney A value using the more accurate approach.
+#' @export
+
+effectsize_calculate_accurate <- function(r1, m, n) {
+  a = (2*r1 - m*(m+1)) / (2*n*m)
+  return(a)
+}
+
+#' FUNCTION: effectsize_calculate_standard
+#'
+
+#' Calculate the actual Vargha-Delaney A value using the standard approach.
+#' @export
+
+effectsize_calculate_standard <- function(r1, m, n) {
+  a = (r1/m - (m+1)/2)/n # formula (14) in Vargha and Delaney, 2000
+  return(a)
+}
+
+#' Default way to calculate the Vargha-Delaney Effect Size using the approach closest to published SBSE papers.
+#' @export
+
+effectsize_default <- function(d, f, ac) {
+
+  # define the treatment and control according to the effsize package
+  treatment = d
+  control = f
+
+  # define all of the value of variables in the effect size calculation
+  m = length(treatment)
+  n = length(control)
+  r = rank(c(treatment,control))
+  r1 = sum(r[seq_len(m)])
+
+  # Compute the Vargha-Delaney effect size measure with the standard equation
+  a = ac(r1, m, n)
+
+  # interpret the effect size and give it a human-readable meaning
+  size <- effectsize_interpret(a)
+
+  return(list(value = a,
+              size = size,
+              rank.sum = r1))
+}
+
+#' FUNCTION: effectsize_standard
+#'
+
+#' Calculate the Vargha-Delaney Effect Size using the approach closest to published SBSE papers.
+#' @export
+
+effectsize_standard <- function(d, f) {
+  return(effectsize_default(d, f, effectsize_calculate_standard))
+}
+
+#' FUNCTION: effectsize_accurate
+#'
+
+#' Calculate the Vargha-Delaney Effect Size using the approach that is claimed to avoid accuracy errors
+#' @export
+
+effectsize_accurate <- function(d,f) {
+  return(effectsize_default(d, f, effectsize_calculate_accurate))
+}
+
 #' FUNCTION: effectsize_wright
 #'
 
@@ -47,68 +115,3 @@ effectsize_wright <- function(sample1, sample2) {
                rank.sum = rank.sum))
 }
 
-#' FUNCTION: effectsize_default
-#'
-
-#' Calculate the Vargha-Delaney Effect Size using the approach closest to published SBSE papers.
-#' @export
-
-effectsize_default <- function(d,f) {
-
-  # define the treatment and control according to the effsize package
-  treatment = d
-  control = f
-
-  # define all of the value of variables in the effect size calculation
-  m = length(treatment)
-  n = length(control)
-  r = rank(c(treatment,control))
-  r1 = sum(r[seq_len(m)])
-
-  # Compute the Vargha-Delaney effect size measure with the standard equation
-  a = (r1/m - (m+1)/2)/n # formula (14) in Vargha and Delaney, 2000
-
-  # interpret the effect size and give it a human-readable meaning
-  size <- effectsize_interpret(a)
-
-  return(list(value = a,
-              size = size,
-              rank.sum = r1))
-}
-
-#' FUNCTION: effectsize_default
-#'
-
-#' Calculate the Vargha-Delaney Effect Size using the approach closest to published SBSE papers.
-#' @export
-
-effectsize_accurate <- function(d,f) {
-
-  # define the treatment and control according to the effsize package
-  treatment = d
-  control = f
-
-  # define all of the value of variables in the effect size calculation
-  m = length(treatment)
-  n = length(control)
-  r = rank(c(treatment,control))
-  r1 = sum(r[seq_len(m)])
-
-  # Compute the Vargha-Delaney effect size measure using an equivalent formula that avoids accuracy errors
-  a = (2*r1 - m*(m+1)) / (2*n*m)
-
-  size <- "none"
-  if (a < 0.44 || a > 0.56) {
-    size <- "small"
-  }
-  if (a < 0.36 || a > 0.64) {
-    size <- "medium"
-  }
-  if (a < 0.29 || a > 0.71) {
-    size <- "large"
-  }
-
-  return(list(value = a,
-              size = size,
-              rank.sum = r1))
-}
