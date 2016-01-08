@@ -34,5 +34,3 @@ analyse_vargha_delaney_effect_size <- function(d) {
   model <- VD.A(virtual_time$mutationanalysistime, standard_time$mutationanalysistime)
   return(model)
 }
-
-
