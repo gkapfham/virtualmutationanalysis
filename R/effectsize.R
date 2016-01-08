@@ -68,16 +68,8 @@ effectsize_default <- function(d,f) {
   # Compute the Vargha-Delaney effect size measure with the standard equation
   a = (r1/m - (m+1)/2)/n # formula (14) in Vargha and Delaney, 2000
 
-  size <- "none"
-  if (a < 0.44 || a > 0.56) {
-    size <- "small"
-  }
-  if (a < 0.36 || a > 0.64) {
-    size <- "medium"
-  }
-  if (a < 0.29 || a > 0.71) {
-    size <- "large"
-  }
+  # interpret the effect size and give it a human-readable meaning
+  size <- effectsize_interpret(a)
 
   return(list(value = a,
               size = size,
