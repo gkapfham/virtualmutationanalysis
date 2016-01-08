@@ -1,19 +1,10 @@
-#' FUNCTION: effectsize_wright
+#' FUNCTION: effectsize_interpret
 #'
 
-#' Calculate the Vargha-Delaney Effect Size using the approach proposed by Chris Wright.
+#' Interpret the Vargha-Delaney Effect Size using the approach proposed by Chris Wright.
 #' @export
 
-effectsize_wright <- function(sample1, sample2) {
-  all <- c(sample1, sample2)
-
-  ranks <- rank(all, ties.method="average")
-  rank.sum <- sum(ranks[1:length(sample1)])
-
-  m <- length(sample1)
-  n <- length(sample2)
-  a <- ((rank.sum / m - (m + 1.0) / 2.0) / n)
-
+effectsize_interpret <- function(a) {
   size <- "none"
   if (a < 0.44 || a > 0.56) {
     size <- "small"
@@ -24,6 +15,32 @@ effectsize_wright <- function(sample1, sample2) {
   if (a < 0.29 || a > 0.71) {
     size <- "large"
   }
+  return(size)
+}
+
+#' FUNCTION: effectsize_wright
+#'
+
+#' Calculate the Vargha-Delaney Effect Size using the approach proposed by Chris Wright.
+#' @export
+
+effectsize_wright <- function(sample1, sample2) {
+  # combine the data samples
+  all <- c(sample1, sample2)
+
+  # compute the ranks for the values and then sum them
+  ranks <- rank(all, ties.method="average")
+  rank.sum <- sum(ranks[1:length(sample1)])
+
+  # compute the values of m and n (the same in our experimental work)
+  m <- length(sample1)
+  n <- length(sample2)
+
+  # compute the Vargha-Delaney a effect size
+  a <- ((rank.sum / m - (m + 1.0) / 2.0) / n)
+
+  # interpret the effect size and give it a human-readable meaning
+  size <- effectsize_interpret(a)
 
   return (list(value = a,
                size = size,
@@ -65,6 +82,13 @@ effectsize_default <- function(d,f) {
   return(list(value = a,
               size = size,
               rank.sum = r1))
+}
+
+#' Calculate the Vargha-Delaney Effect Size using the approach closest to published SBSE papers.
+#' @export
+
+test_mine <- function() {
+
 }
 
 #' FUNCTION: effectsize_default
