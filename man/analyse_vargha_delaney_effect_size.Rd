@@ -8,5 +8,6 @@ analyse_vargha_delaney_effect_size(d)
 }
 \description{
 Perform an effect size analysis of the timings for the standard and virtual mutation analysis techniques.
+By default, specify that the calculation should use the effectsize_accurate function for calculating the statistic.
 }
 
