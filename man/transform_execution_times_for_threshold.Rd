@@ -3,14 +3,12 @@
 \name{transform_execution_times_for_threshold}
 \alias{transform_execution_times_for_threshold}
 \title{FUNCTION: transform_execution_times_for_threshold
-Transform the timing values so that they do not include any below 100 ms. This is the widely agreed on
-value below which a human cannot perceive differences (see the SSBSE 2015 paper for support for this statement).}
+Transform the timing values so that they do not include any below a specified number of ms.}
 \usage{
-transform_execution_times_for_threshold(d)
+transform_execution_times_for_threshold(d, t)
 }
 \description{
 FUNCTION: transform_execution_times_for_threshold
-Transform the timing values so that they do not include any below 100 ms. This is the widely agreed on
-value below which a human cannot perceive differences (see the SSBSE 2015 paper for support for this statement).
+Transform the timing values so that they do not include any below a specified number of ms.
 }
 
