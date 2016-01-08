@@ -9,8 +9,7 @@ Depends: R (>= 3.2.2),
   readr,
   ggplot2,
   magrittr,
-  broom,
-  effsize
+  broom
 License: GPL
 LazyData: true
 Imports:
@@ -20,6 +19,5 @@ Imports:
   ggplot2,
   magrittr,
   broom,
-  effsize,
   tidyr
 Suggests: testthat
