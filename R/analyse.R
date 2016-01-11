@@ -91,7 +91,6 @@ analyse_vargha_delaney_effect_size_specify <- function(d, e) {
   standard_time_sqlite <- analyse_extract_dbms_data(standard_time, "SQLite")
   virtual_time_sqlite <- analyse_extract_dbms_data(virtual_time, "SQLite")
   standard_time_sqlite %>% dplyr::distinct(dbms) %>% dplyr::select(dbms) %>% glimpse()
-  analyse_perform_wilcox_rank_sum_test(standard_time_sqlite, virtual_time_sqlite) %>% glimpse()
   model <- e(virtual_time_sqlite$mutationanalysistime, standard_time_sqlite$mutationanalysistime)
   model %>% str()
 }
@@ -118,6 +117,7 @@ analyse_vargha_delaney_effect_size <- function(d) {
 analyse_vargha_delaney_effect_size_thresholding <- function(d) {
   for(threshold in seq(0, 1000, by=100)) {
     dt <-transform_execution_times_for_threshold(d, threshold)
+    print(threshold)
     analyse_vargha_delaney_effect_size_specify(dt, effectsize_accurate) %>% str()
   }
 }
