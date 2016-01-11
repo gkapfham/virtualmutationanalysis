@@ -10,10 +10,27 @@ analyse_wilcox_rank_sum_test <- function(d) {
   standard_time <- d %>% dplyr::filter(technique %in% c("Standard"))
   # extract the relevant data values for the virtual method
   virtual_time <- d %>% dplyr::filter(technique %in% c("Virtual"))
-  # --> extract the relevant data values for the HyperSQL database
-  standard_time_hypersql = standard_time %>% dplyr::filter(dbms %in% c("HyperSQL"))
-  virtual_time_hypersql = virtual_time %>% dplyr::filter(dbms %in% c("HyperSQL"))
-  perform_wilcox_rank_sum_test(standard_time_hypersql, virtual_time_hypersql)
+
+  # extract the relevant data values for the HyperSQL database
+  standard_time_hypersql <- analyse_extract_dbms_data(standard_time, "HyperSQL")
+  virtual_time_hypersql <- analyse_extract_dbms_data(virtual_time, "HyperSQL")
+
+  standard_time_hypersql %>% dplyr::distinct(dbms) %>% dplyr::select(dbms) %>% glimpse()
+  analyse_perform_wilcox_rank_sum_test(standard_time_hypersql, virtual_time_hypersql)
+
+}
+
+#' FUNCTION: analyse_extract_dbms_data
+#'
+
+#' Perform a single Wilcoxon rank-sum test for two input data sets.
+#' @importFrom magrittr %>%
+#' @export
+
+analyse_extract_dbms_data <- function(d,cdbms) {
+  # extract the relevant data values for the specified database
+  d_dbms <- d %>% dplyr::filter(dbms %in% c(cdbms))
+  return(d_dbms)
 }
 
 #' FUNCTION: perform_wilcox_rank_sum_test
@@ -23,7 +40,7 @@ analyse_wilcox_rank_sum_test <- function(d) {
 #' @importFrom magrittr %>%
 #' @export
 
-perform_wilcox_rank_sum_test <- function(v,s) {
+analyse_perform_wilcox_rank_sum_test <- function(s,v) {
   # perform the statistical analysis and return a "tidy" version of the model
   model <- wilcox.test(v$mutationanalysistime, s$mutationanalysistime)
   tidy_model <- model %>% broom::tidy()
