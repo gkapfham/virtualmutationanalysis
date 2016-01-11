@@ -7,6 +7,7 @@
 analyse_wilcox_rank_sum_test(d)
 }
 \description{
-Perform a statistical analysis of the timings for the standard and virtual mutation analysis techniques.
+Perform a statistical analysis of the timings for the standard and virtual mutation analysis techniques. Right now, this method
+simply returns textual output; it would be much better if it actually returned a single data frame.
 }
 

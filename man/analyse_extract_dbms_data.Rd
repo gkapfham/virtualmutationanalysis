@@ -4,7 +4,7 @@
 \alias{analyse_extract_dbms_data}
 \title{FUNCTION: analyse_extract_dbms_data}
 \usage{
-analyse_extract_dbms_data(d, dbms)
+analyse_extract_dbms_data(d, cdbms)
 }
 \description{
 Perform a single Wilcoxon rank-sum test for two input data sets.
