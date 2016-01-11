@@ -9,6 +9,7 @@
 analyse_wilcox_rank_sum_test <- function(d) {
   # extract the relevant data values for the standard method
   standard_time <- d %>% dplyr::filter(technique %in% c("Standard"))
+
   # extract the relevant data values for the virtual method
   virtual_time <- d %>% dplyr::filter(technique %in% c("Virtual"))
 
