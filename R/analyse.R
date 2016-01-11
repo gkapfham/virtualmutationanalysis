@@ -7,9 +7,12 @@
 
 analyse_wilcox_rank_sum_test <- function(d) {
   # extract the relevant data values for the standard method
-  standard_time = d %>% dplyr::filter(technique %in% c("Standard"))
+  standard_time <- d %>% dplyr::filter(technique %in% c("Standard"))
   # extract the relevant data values for the virtual method
-  virtual_time = d %>% dplyr::filter(technique %in% c("Virtual"))
+  virtual_time <- d %>% dplyr::filter(technique %in% c("Virtual"))
+  # extract the relevant data values for the HyperSQL database
+  standard_time_hypersql = standard_time %>% dplyr::filter(dbms %in% c("HyperSQL"))
+
   # perform the statistical analysis and return a "tidy" version of the model
   model <- wilcox.test(virtual_time$mutationanalysistime, standard_time$mutationanalysistime)
   tidy_model <- model %>% broom::tidy()
@@ -25,9 +28,9 @@ analyse_wilcox_rank_sum_test <- function(d) {
 
 analyse_vargha_delaney_effect_size_specify <- function(d, e) {
   # extract the relevant data values for the standard method
-  standard_time = d %>% dplyr::filter(technique %in% c("Standard"))
+  standard_time <- d %>% dplyr::filter(technique %in% c("Standard"))
   # extract the relevant data values for the virtual method
-  virtual_time = d %>% dplyr::filter(technique %in% c("Virtual"))
+  virtual_time <- d %>% dplyr::filter(technique %in% c("Virtual"))
   # perform the statistical analysis and return a "tidy" version of the model
   # it is important to note that the first parameter is the "treatment" and the second parameter is the "control"
   # passing the parameters in the opposite order will yield the opposite conclusion for the data sets
