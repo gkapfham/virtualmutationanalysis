@@ -24,7 +24,11 @@ analyse_wilcox_rank_sum_test <- function(d) {
   standard_time_postgres %>% dplyr::distinct(dbms) %>% dplyr::select(dbms) %>% glimpse()
   analyse_perform_wilcox_rank_sum_test(standard_time_postgres, virtual_time_postgres) %>% glimpse()
 
-
+  # extract and analyse the relevant data values for the SQLite database
+  standard_time_sqlite <- analyse_extract_dbms_data(standard_time, "SQLite")
+  virtual_time_sqlite <- analyse_extract_dbms_data(virtual_time, "SQLite")
+  standard_time_sqlite %>% dplyr::distinct(dbms) %>% dplyr::select(dbms) %>% glimpse()
+  analyse_perform_wilcox_rank_sum_test(standard_time_sqlite, virtual_time_sqlite) %>% glimpse()
 }
 
 #' FUNCTION: analyse_extract_dbms_data
