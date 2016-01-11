@@ -69,13 +69,31 @@ analyse_perform_wilcox_rank_sum_test <- function(s,v) {
 analyse_vargha_delaney_effect_size_specify <- function(d, e) {
   # extract the relevant data values for the standard method
   standard_time <- d %>% dplyr::filter(technique %in% c("Standard"))
+
   # extract the relevant data values for the virtual method
   virtual_time <- d %>% dplyr::filter(technique %in% c("Virtual"))
-  # perform the statistical analysis and return a "tidy" version of the model
-  # it is important to note that the first parameter is the "treatment" and the second parameter is the "control"
-  # passing the parameters in the opposite order will yield the opposite conclusion for the data sets
-  model <- e(virtual_time$mutationanalysistime, standard_time$mutationanalysistime)
-  return(model)
+
+  # extract and analyse the relevant data values for the HyperSQL database
+  standard_time_hypersql <- analyse_extract_dbms_data(standard_time, "HyperSQL")
+  virtual_time_hypersql <- analyse_extract_dbms_data(virtual_time, "HyperSQL")
+  standard_time_hypersql %>% dplyr::distinct(dbms) %>% dplyr::select(dbms) %>% glimpse()
+  model <- e(virtual_time_hypersql$mutationanalysistime, standard_time_hypersql$mutationanalysistime)
+  model %>% str()
+
+  # extract and analyse the relevant data values for the PostgreSQL database
+  standard_time_postgres <- analyse_extract_dbms_data(standard_time, "PostgreSQL")
+  virtual_time_postgres <- analyse_extract_dbms_data(virtual_time, "PostgreSQL")
+  standard_time_postgres %>% dplyr::distinct(dbms) %>% dplyr::select(dbms) %>% glimpse()
+  model <- e(virtual_time_postgres$mutationanalysistime, standard_time_postgres$mutationanalysistime)
+  model %>% str()
+
+  # extract and analyse the relevant data values for the SQLite database
+  standard_time_sqlite <- analyse_extract_dbms_data(standard_time, "SQLite")
+  virtual_time_sqlite <- analyse_extract_dbms_data(virtual_time, "SQLite")
+  standard_time_sqlite %>% dplyr::distinct(dbms) %>% dplyr::select(dbms) %>% glimpse()
+  analyse_perform_wilcox_rank_sum_test(standard_time_sqlite, virtual_time_sqlite) %>% glimpse()
+  model <- e(virtual_time_sqlite$mutationanalysistime, standard_time_sqlite$mutationanalysistime)
+  model %>% str()
 }
 
 #' FUNCTION: analyse_vargha_delaney_effect_size
