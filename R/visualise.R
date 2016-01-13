@@ -6,7 +6,7 @@
 
 visualise_mutation_score_time_constrained <- function(data) {
   p <- ggplot2::ggplot(data,ggplot2::aes(x = schema, y = score)) +
-    ggplot2::facet_grid(score_type~dbms, labeller = ggplot2::label_parsed) +
+    ggplot2::facet_grid(dbms~score_type, labeller = ggplot2::label_parsed) +
     ggplot2::geom_boxplot(outlier.size = 0.75, lwd = 0.25) +
     ggplot2::theme_grey(base_size = 6) +
     ggplot2::theme(title = ggplot2::element_text(size=6)) +
