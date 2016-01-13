@@ -45,7 +45,7 @@ visualise_mutation_totals_time_constrained <- function(data) {
 
 visualise_mutation_time_original_virtual <- function(data) {
   p <- ggplot2::ggplot(data,ggplot2::aes(x = schema, y = mutationanalysistime)) +
-    ggplot2::facet_grid(technique~dbms, labeller = ggplot2::label_parsed) +
+    ggplot2::facet_grid(dbms~technique, labeller = ggplot2::label_parsed) +
     ggplot2::geom_boxplot(outlier.size = 0.75, lwd = 0.25) +
     ggplot2::scale_y_log10() +
     ggplot2::theme_grey(base_size = 6) +
