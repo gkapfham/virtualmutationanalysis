@@ -99,3 +99,14 @@ test_that("After thresholding there are only zeros when the value was below 500 
   expect_that(nrow(dempty), equals(0))
 })
 
+test_that("After truncation thresholding there are only zeros when the value was below 100 ms", {
+  d <- create_original_and_virtual_data()
+  expect_that(ncol(d), equals(6))
+  dempty <- d %>% filter(mutationanalysistime < 100) %>% filter(mutationanalysistime == 0)
+  expect_that(nrow(dempty), equals(0))
+  dt <- d %>% transform_truncate_execution_times_for_precision(-2)
+  expect_that(ncol(dt), equals(6))
+  dempty <- dt %>% filter(mutationanalysistime < 100) %>% filter(mutationanalysistime != 0)
+  expect_that(nrow(dempty), equals(0))
+})
+

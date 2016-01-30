@@ -59,7 +59,7 @@ analyse_perform_wilcox_rank_sum_test <- function(s,v) {
   return(tidy_model)
 }
 
-#' FUNCTION: analyse_vargha_delaney_effect_size
+#' FUNCTION: analyse_vargha_delaney_effect_size_specify
 #'
 
 #' Perform an effect size analysis of the timings for the standard and virtual mutation analysis techniques.

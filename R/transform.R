@@ -115,3 +115,16 @@ transform_execution_times_for_threshold <- function(d, t) {
     dplyr::mutate(mutationanalysistime=ifelse(mutationanalysistime<t, 0, mutationanalysistime))
   return(td)
 }
+
+#' FUNCTION: transform_truncate_execution_times_for_precision
+
+#' Transform the timing values so that they do not include any below a specified number of ms.
+#' @importFrom magrittr %>%
+#' @export
+
+transform_truncate_execution_times_for_precision <- function(d, p) {
+  # trunc(x*10^4)/10^4
+  td <- d %>%
+    dplyr::mutate(mutationanalysistime=base::trunc(mutationanalysistime*10^p)/10^p)
+  return(td)
+}
