@@ -13,7 +13,7 @@ transform_time_constrained_data_for_scores <- function(d) {
     tidyr::gather(score_type, score, vm_score:selection_score) %>%
     dplyr::mutate(score_type = plyr::revalue(score_type, c(
             "vm_score" = "Virtual",
-            "selection_score" = "Time-Constrained"
+            "selection_score" = "Selective"
             ))) %>%
     dplyr::mutate(dbms = plyr::revalue(dbms, c(
             "Postgres" = "PostgreSQL"
@@ -38,7 +38,7 @@ transform_time_constrained_data_for_totals <- function(d) {
     tidyr::gather(total_type, total, vm_total:selection_total) %>%
     dplyr::mutate(total_type = plyr::revalue(total_type, c(
             "vm_total" = "Virtual",
-            "selection_total" = "Time-Constrained"
+            "selection_total" = "Selective"
             ))) %>%
     dplyr::mutate(dbms = plyr::revalue(dbms, c(
             "Postgres" = "PostgreSQL"

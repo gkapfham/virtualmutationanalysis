@@ -2,7 +2,7 @@
 % Please edit documentation in R/analyse.R
 \name{analyse_vargha_delaney_effect_size_specify}
 \alias{analyse_vargha_delaney_effect_size_specify}
-\title{FUNCTION: analyse_vargha_delaney_effect_size}
+\title{FUNCTION: analyse_vargha_delaney_effect_size_specify}
 \usage{
 analyse_vargha_delaney_effect_size_specify(d, e)
 }
