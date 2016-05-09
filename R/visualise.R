@@ -108,7 +108,8 @@ visualise_savings_and_mutants_color <- function(data) {
     ggplot2::xlab("Number of Mutants") +
     ggplot2::theme_bw(base_size = 8) +
     ggplot2::guides(shape=FALSE) +
-    ggplot2::theme(title = ggplot2::element_text(size=6), legend.position = "top") +
+    ggplot2::theme(title = ggplot2::element_text(size=6), legend.position = "top",
+                   legend.key = element_rect(colour = 'white', fill = 'white', size = 0.5, linetype='blank') ) +
     ggplot2::scale_color_brewer(name = "", palette = "Set2")
   return(p)
 }
