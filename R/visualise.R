@@ -18,6 +18,28 @@ visualise_mutation_score_time_constrained <- function(data) {
   return(p)
 }
 
+#' FUNCTION: visualise_mutation_score_time_constrained_color
+#'
+#' Produces a visualisation shows the number of mutants in total and killed for the virtual mutation method and for the
+#' time-constrained original approach. Color version of the graph.
+#' @export
+
+visualise_mutation_score_time_constrained_color <- function(data) {
+  p <- ggplot2::ggplot(data,ggplot2::aes(x = schema, y = score, fill = score_type)) +
+    ggplot2::facet_grid(dbms~score_type, labeller = ggplot2::label_parsed) +
+    ggplot2::geom_boxplot(outlier.size = 0.75, lwd = 0.25) +
+    ggplot2::theme_bw(base_size = 6) +
+    ggplot2::theme(title = ggplot2::element_text(size=6)) +
+    ggplot2::theme(axis.text.x = ggplot2::element_text(angle = 45, hjust = 1, size = 5)) +
+    ggplot2::theme(axis.text.y = ggplot2::element_text(angle = 45, hjust = 1, size = 5)) +
+    ggplot2::theme(strip.background = element_blank(), panel.border = element_rect(colour = "black")) +
+    ggplot2::scale_fill_brewer(palette="Set2", guide=FALSE) +
+    ggplot2::xlab("Database Schema") +
+    ggplot2::ylab("Mutation Score") +
+    ggplot2::stat_summary(fun.y = mean, fill = "white", colour = "black", geom = "point", shape = 23, size = 1, show.legend = FALSE)
+  return(p)
+}
+
 #' FUNCTION: visualise_mutation_totals_time_constrained
 #'
 #' Produces a visualisation shows the number of mutants in total and killed for the virtual mutation method and for the
