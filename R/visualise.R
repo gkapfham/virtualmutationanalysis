@@ -71,11 +71,13 @@ visualise_mutation_totals_time_constrained_color <- function(data) {
     ggplot2::facet_grid(~dbms, labeller = ggplot2::label_parsed) +
     ggplot2::geom_bar(stat="identity", position="dodge") +
     ggplot2::theme_bw(base_size = 8) +
-    ggplot2::scale_fill_brewer(name = "", palette="Set2", guide=FALSE) +
-    ggplot2::theme(title = ggplot2::element_text(size=6), legend.position = "top") +
+    ggplot2::scale_fill_brewer(name = "", palette = "Set2") +
+    ggplot2::theme(title = ggplot2::element_text(size=6), legend.position = "top",
+                   legend.key = element_rect(colour = 'white', fill = 'white', size = 0.5, linetype='blank')) +
     ggplot2::theme(strip.background = element_blank(), panel.border = element_rect(colour = "black")) +
     ggplot2::theme(axis.text.x = ggplot2::element_text(angle = 45, hjust = 1, size = 6)) +
     ggplot2::theme(axis.text.y = ggplot2::element_text(angle = 45, hjust = 1, size = 6)) +
+    ggplot2::theme(legend.key.width=unit(1, "line"), legend.key.height=unit(1, "line")) +
     ggplot2::xlab("Database Schema") +
     ggplot2::ylab("Total Number of Mutants")
   return(p)
