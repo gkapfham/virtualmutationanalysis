@@ -102,13 +102,14 @@ visualise_savings_and_mutants <- function(data) {
 #' @export
 
 visualise_savings_and_mutants_color <- function(data) {
-  p <- ggplot2::ggplot(data, ggplot2::aes(x = mutantcount, y = saving_percent*100, shape = dbms)) +
+  p <- ggplot2::ggplot(data, ggplot2::aes(x = mutantcount, y = saving_percent*100, color = dbms)) +
     ggplot2::geom_point(size = 2) +
     ggplot2::ylab("Percentage of Mean Time Saved") +
     ggplot2::xlab("Number of Mutants") +
-    ggplot2::scale_shape(guide = ggplot2::guide_legend(title = ""), solid = FALSE) +
-    ggplot2::theme_grey(base_size = 6) +
-    ggplot2::theme(title = ggplot2::element_text(size=6), legend.position = "top")
+    ggplot2::theme_bw(base_size = 8) +
+    ggplot2::guides(shape=FALSE) +
+    ggplot2::theme(title = ggplot2::element_text(size=6), legend.position = "top") +
+    ggplot2::scale_color_brewer(name = "", palette = "Set2")
   return(p)
 }
 
