@@ -93,8 +93,22 @@ visualise_savings_and_mutants <- function(data) {
     ggplot2::scale_shape(guide = ggplot2::guide_legend(title = ""), solid = FALSE) +
     ggplot2::theme_grey(base_size = 6) +
     ggplot2::theme(title = ggplot2::element_text(size=6), legend.position = "top")
-    # since there are a smaller number of data points, it is acceptable to have a single graph
-    # ggplot2::facet_wrap(~dbms, scales = "free_y")
+  return(p)
+}
+
+#' FUNCTION: visualise_savings_and_mutants_color
+#'
+#' Visualize the time savings with respect to the total number of mutants analysed, color version.
+#' @export
+
+visualise_savings_and_mutants_color <- function(data) {
+  p <- ggplot2::ggplot(data, ggplot2::aes(x = mutantcount, y = saving_percent*100, shape = dbms)) +
+    ggplot2::geom_point(size = 2) +
+    ggplot2::ylab("Percentage of Mean Time Saved") +
+    ggplot2::xlab("Number of Mutants") +
+    ggplot2::scale_shape(guide = ggplot2::guide_legend(title = ""), solid = FALSE) +
+    ggplot2::theme_grey(base_size = 6) +
+    ggplot2::theme(title = ggplot2::element_text(size=6), legend.position = "top")
   return(p)
 }
 
