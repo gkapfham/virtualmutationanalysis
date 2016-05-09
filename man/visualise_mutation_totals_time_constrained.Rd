@@ -8,6 +8,6 @@ visualise_mutation_totals_time_constrained(data)
 }
 \description{
 Produces a visualisation shows the number of mutants in total and killed for the virtual mutation method and for the
-time-constrained original approach
+time-constrained original approach.
 }
 
