@@ -37,7 +37,6 @@ visualise_mutation_score_time_constrained_color <- function(data) {
     ggplot2::scale_color_brewer(palette="Set2", guide=FALSE) +
     ggplot2::xlab("Database Schema") +
     ggplot2::ylab("Mutation Score")
-    # ggplot2::stat_summary(fun.y = mean, fill = "white", colour = "black", geom = "point", shape = 23, size = 1, show.legend = FALSE)
   return(p)
 }
 
