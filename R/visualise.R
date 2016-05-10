@@ -26,9 +26,9 @@ visualise_mutation_score_time_constrained <- function(data) {
 
 visualise_mutation_score_time_constrained_color <- function(data) {
   brewer_colors <- RColorBrewer::brewer.pal(n = 3, name = "Set1")
-  brewer_colors_subset = c(rep(brewer_colors[[1]], 9), rep(brewer_colors[[2]], 9),
-                           rep(brewer_colors[[1]], 9), rep(brewer_colors[[2]], 9),
-                           rep(brewer_colors[[1]], 9), rep(brewer_colors[[2]], 9))
+  brewer_colors_expand <- c(rep(brewer_colors[[1]], 9), rep(brewer_colors[[2]], 9),
+                            rep(brewer_colors[[1]], 9), rep(brewer_colors[[2]], 9),
+                            rep(brewer_colors[[1]], 9), rep(brewer_colors[[2]], 9))
   p <- ggplot2::ggplot(data,ggplot2::aes(x = schema, y = score, fill = score_type, color=score_type)) +
     ggplot2::facet_grid(dbms~score_type, labeller = ggplot2::label_parsed) +
     ggplot2::geom_boxplot(outlier.size = 0.75, lwd = 0.25) +
@@ -41,7 +41,7 @@ visualise_mutation_score_time_constrained_color <- function(data) {
     ggplot2::scale_color_brewer(palette="Set1", guide=FALSE) +
     ggplot2::xlab("Database Schema") +
     ggplot2::ylab("Mutation Score") +
-    ggplot2::stat_summary(fun.y = mean, fill = brewer_colors_subset, colour = "black", geom = "point", shape = 23, size = 1, show.legend = FALSE)
+    ggplot2::stat_summary(fun.y = mean, fill = brewer_colors_expand, colour = "black", geom = "point", shape = 23, size = 1, show.legend = FALSE)
   return(p)
 }
 
