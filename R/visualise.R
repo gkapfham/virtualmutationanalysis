@@ -121,20 +121,44 @@ visualise_mutation_time_original_virtual <- function(data) {
 #' @export
 
 visualise_mutation_time_original_virtual_color <- function(data) {
-  p <- ggplot2::ggplot(data,ggplot2::aes(x = schema, y = mutationanalysistime)) +
+  brewer_colors_border <- RColorBrewer::brewer.pal(n = 3, name = "Set1")
+  brewer_colors_expand_border <- c(rep(brewer_colors_border[[1]], 9), rep(brewer_colors_border[[2]], 9),
+                                   rep(brewer_colors_border[[1]], 9), rep(brewer_colors_border[[2]], 9),
+                                   rep(brewer_colors_border[[1]], 9), rep(brewer_colors_border[[2]], 9))
+  brewer_colors_fill <- RColorBrewer::brewer.pal(n = 3, name = "Pastel1")
+  brewer_colors_expand_fill <- c(rep(brewer_colors_fill[[1]], 9), rep(brewer_colors_fill[[2]], 9),
+                                 rep(brewer_colors_fill[[1]], 9), rep(brewer_colors_fill[[2]], 9),
+                                 rep(brewer_colors_fill[[1]], 9), rep(brewer_colors_fill[[2]], 9))
+  p <- ggplot2::ggplot(data,ggplot2::aes(x = schema, y = mutationanalysistime, fill = technique, color=technique)) +
     ggplot2::facet_grid(dbms~technique, labeller = ggplot2::label_parsed) +
-    ggplot2::geom_boxplot(outlier.size = 0.75, lwd = 0.25) +
     ggplot2::scale_y_log10() +
-    ggplot2::theme_grey(base_size = 6) +
+    ggplot2::geom_boxplot(outlier.size = 0.75, lwd = 0.25) +
+    ggplot2::theme_bw(base_size = 8) +
     ggplot2::theme(title = ggplot2::element_text(size=6)) +
-    ggplot2::theme(axis.text.x = ggplot2::element_text(angle = 45, hjust = 1, size = 5)) +
-    ggplot2::theme(axis.text.y = ggplot2::element_text(angle = 45, hjust = 1, size = 5)) +
+    ggplot2::theme(axis.text.x = ggplot2::element_text(angle = 45, hjust = 1, size = 6)) +
+    ggplot2::theme(axis.text.y = ggplot2::element_text(angle = 45, hjust = 1, size = 6)) +
+    ggplot2::theme(strip.background = element_blank(), panel.border = element_rect(colour = "black")) +
+    ggplot2::scale_fill_brewer(palette="Pastel1", guide=FALSE) +
+    ggplot2::scale_color_brewer(palette="Set1", guide=FALSE) +
     ggplot2::xlab("Database Schema") +
     ggplot2::ylab("Mutation Analysis Time (Log Transformed)") +
-    ggplot2::stat_summary(fun.y = mean, fill = "white", colour = "black", geom = "point", shape = 23, size = 1, show.legend = FALSE)
+    ggplot2::stat_summary(fun.y = mean, fill = brewer_colors_expand_fill, colour = brewer_colors_expand_border,
+                          geom = "point", shape = 23, size = 1, show.legend = FALSE)
+
+  # p <- ggplot2::ggplot(data,ggplot2::aes(x = schema, y = mutationanalysistime)) +
+  #   ggplot2::facet_grid(dbms~technique, labeller = ggplot2::label_parsed) +
+  #   ggplot2::geom_boxplot(outlier.size = 0.75, lwd = 0.25) +
+  #   ggplot2::scale_y_log10() +
+  #   ggplot2::theme_grey(base_size = 6) +
+  #   ggplot2::theme(title = ggplot2::element_text(size=6)) +
+  #   ggplot2::theme(axis.text.x = ggplot2::element_text(angle = 45, hjust = 1, size = 5)) +
+  #   ggplot2::theme(axis.text.y = ggplot2::element_text(angle = 45, hjust = 1, size = 5)) +
+
+    # ggplot2::xlab("Database Schema") +
+    # ggplot2::ylab("Mutation Analysis Time (Log Transformed)") +
+    # ggplot2::stat_summary(fun.y = mean, fill = "white", colour = "black", geom = "point", shape = 23, size = 1, show.legend = FALSE)
   return(p)
 }
-
 
 #' FUNCTION: visualise_savings_and_mutants
 #'
