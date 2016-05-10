@@ -77,11 +77,12 @@ visualise_mutation_totals_time_constrained <- function(data) {
 #' @export
 
 visualise_mutation_totals_time_constrained_color <- function(data) {
-  p <- ggplot2::ggplot(data,ggplot2::aes(x = schema, y = total, fill=total_type)) +
+  p <- ggplot2::ggplot(data, ggplot2::aes(x = schema, y = total, fill=total_type, color=total_type)) +
     ggplot2::facet_grid(~dbms, labeller = ggplot2::label_parsed) +
     ggplot2::geom_bar(stat="identity", position="dodge") +
     ggplot2::theme_bw(base_size = 8) +
-    ggplot2::scale_fill_brewer(name = "", palette = "Paired") +
+    ggplot2::scale_fill_brewer(name = "", palette = "Pastel1") +
+    ggplot2::scale_color_brewer(palette="Set1", guide=FALSE) +
     ggplot2::theme(title = ggplot2::element_text(size=6), legend.position = "top",
                    legend.key = element_rect(colour = 'white', fill = 'white', size = 0.5, linetype='blank')) +
     ggplot2::theme(strip.background = element_blank(), panel.border = element_rect(colour = "black")) +
