@@ -77,18 +77,22 @@ visualise_mutation_totals_time_constrained <- function(data) {
 #' @export
 
 visualise_mutation_totals_time_constrained_color <- function(data) {
-  p <- ggplot2::ggplot(data, ggplot2::aes(x = schema, y = total, fill=total_type, color=total_type)) +
+  brewer_colors_border <- RColorBrewer::brewer.pal(n = 3, name = "Set1")
+  brewer_colors_expand_border <- c(rep(brewer_colors_border[[1]], 9), rep(brewer_colors_border[[2]], 9),
+                                   rep(brewer_colors_border[[1]], 9), rep(brewer_colors_border[[2]], 9),
+                                   rep(brewer_colors_border[[1]], 9), rep(brewer_colors_border[[2]], 9))
+  p <- ggplot2::ggplot(data, ggplot2::aes(x = schema, y = total, fill = total_type, color = total_type, width = .5)) +
     ggplot2::facet_grid(~dbms, labeller = ggplot2::label_parsed) +
-    ggplot2::geom_bar(stat="identity", position="dodge") +
+    ggplot2::geom_bar(stat = "identity", position = position_dodge(width=1.0))+
     ggplot2::theme_bw(base_size = 8) +
     ggplot2::scale_fill_brewer(name = "", palette = "Pastel1") +
-    ggplot2::scale_color_brewer(palette="Set1", guide=FALSE) +
+    ggplot2::scale_color_brewer(name = "", palette = "Set1") +
     ggplot2::theme(title = ggplot2::element_text(size=6), legend.position = "top",
                    legend.key = element_rect(colour = 'white', fill = 'white', size = 0.5, linetype='blank')) +
     ggplot2::theme(strip.background = element_blank(), panel.border = element_rect(colour = "black")) +
     ggplot2::theme(axis.text.x = ggplot2::element_text(angle = 45, hjust = 1, size = 6)) +
     ggplot2::theme(axis.text.y = ggplot2::element_text(angle = 45, hjust = 1, size = 6)) +
-    ggplot2::theme(legend.key.width=unit(1, "line"), legend.key.height=unit(1, "line")) +
+    ggplot2::theme(legend.key.width = unit(1, "line"), legend.key.height = unit(1, "line")) +
     ggplot2::xlab("Database Schema") +
     ggplot2::ylab("Total Number of Mutants")
   return(p)
