@@ -2,7 +2,7 @@
 % Please edit documentation in R/visualise.R
 \name{visualise_mutation_time_original_virtual}
 \alias{visualise_mutation_time_original_virtual}
-\title{FUNCTION: visualise_mutation_time_original}
+\title{FUNCTION: visualise_mutation_time_original_virtual}
 \usage{
 visualise_mutation_time_original_virtual(data)
 }
