@@ -77,10 +77,6 @@ visualise_mutation_totals_time_constrained <- function(data) {
 #' @export
 
 visualise_mutation_totals_time_constrained_color <- function(data) {
-  brewer_colors_border <- RColorBrewer::brewer.pal(n = 3, name = "Set1")
-  brewer_colors_expand_border <- c(rep(brewer_colors_border[[1]], 9), rep(brewer_colors_border[[2]], 9),
-                                   rep(brewer_colors_border[[1]], 9), rep(brewer_colors_border[[2]], 9),
-                                   rep(brewer_colors_border[[1]], 9), rep(brewer_colors_border[[2]], 9))
   p <- ggplot2::ggplot(data, ggplot2::aes(x = schema, y = total, fill = total_type, color = total_type, width = .5)) +
     ggplot2::facet_grid(~dbms, labeller = ggplot2::label_parsed) +
     ggplot2::geom_bar(stat = "identity", position = position_dodge(width=1.0))+
@@ -141,15 +137,16 @@ visualise_savings_and_mutants <- function(data) {
 #' @export
 
 visualise_savings_and_mutants_color <- function(data) {
-  p <- ggplot2::ggplot(data, ggplot2::aes(x = mutantcount, y = saving_percent*100, color = dbms)) +
-    ggplot2::geom_point(size = 2) +
+  p <- ggplot2::ggplot(data, ggplot2::aes(x = mutantcount, y = saving_percent*100, color = dbms, fill = dbms)) +
+    ggplot2::geom_point(size = 2, shape=22) +
     ggplot2::ylab("Percentage of Mean Time Saved") +
     ggplot2::xlab("Number of Mutants") +
     ggplot2::theme_bw(base_size = 8) +
     ggplot2::guides(shape=FALSE) +
+    ggplot2::scale_fill_brewer(name = "", palette = "Pastel1") +
+    ggplot2::scale_color_brewer(name = "", palette = "Set1") +
     ggplot2::theme(title = ggplot2::element_text(size=6), legend.position = "top",
-                   legend.key = element_rect(colour = 'white', fill = 'white', size = 0.5, linetype='blank') ) +
-    ggplot2::scale_color_brewer(name = "", palette = "Set2")
+                   legend.key = element_rect(colour = 'white', fill = 'white', size = 0.5, linetype='blank'))
   return(p)
 }
 
