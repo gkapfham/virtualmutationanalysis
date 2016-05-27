@@ -2,8 +2,8 @@
 
 This repository contains the replication package for a research paper that was accepted for publication at the [Eleventh
 International Workshop on Automation of Software Test](http://tech.brookes.ac.uk/AST2016/) (AST 2016). In particular,
-this repository contains an R package, written with the [devtools](http://github.com/hadley/devtools) package development
-framework.
+this repository contains an R package that was implemented with the [devtools](http://github.com/hadley/devtools)
+package development framework.
 
 This R package contains all of the data sets that are presented in a polished form in our AST 2016 paper.  It also
 provides all of the R source code to read in and summarize the data sets, perform the necessary data manipulations,
@@ -25,7 +25,7 @@ Here is a reference for the paper:
 
 ## Installation Instructions
 
-Please note that these instructions have been tested on an Ubuntu 15.04 workstation running the following version of R.
+Please note that these instructions have been tested on an Ubuntu 15.04 workstation running the following version of R:
 
 ```shell
 R version 3.2.3 (2015-12-10) -- "Wooden Christmas-Tree"
@@ -33,9 +33,9 @@ Copyright (C) 2015 The R Foundation for Statistical Computing
 Platform: x86_64-pc-linux-gnu (64-bit)
 ```
 
-You can type the following command in your R development environment if you want to want to install and then use this R
-package. This method is ideal if you plan to leverage our existing functions and data sets in your own work. This is
-also the code that we use in the RMarkdown file found in the
+You can type the next command in your R development environment if you want to want to install and then use this R
+package. This method is ideal if you plan to leverage, without modification, our existing functions and data sets in
+your own work. The following line is also the code that we use in the RMarkdown file found in the
 [gkapfham/ast2016-paper](http://github.com/gkapfham/ast2016-paper) repository.
 
 ```shell
@@ -58,7 +58,7 @@ devtools::load_all()
 devtools::test()
 ```
 
-Executing the test suite with the aforementioned commands should produce the following output:
+Running the test suite with the aforementioned commands should produce the following output:
 
 ```shell
 combine-original-dbmss : .......
@@ -88,5 +88,5 @@ transform-mutationtime-thresholding : ............
 
 ## Troubleshooting
 
-If you are unable to compile the paper with your development tools and your
-execution environment, then please open a new issue and I will attempt to resolve your concerns.
+If you are unable to compile the paper with your development tools and your execution environment, then please open a
+new issue and I will attempt to resolve your concerns. Feedback is welcomed and appreciated!
