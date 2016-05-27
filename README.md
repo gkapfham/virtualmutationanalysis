@@ -33,16 +33,17 @@ Copyright (C) 2015 The R Foundation for Statistical Computing
 Platform: x86_64-pc-linux-gnu (64-bit)
 ```
 
-You can type the following command in your R development environment if you want to simply want to install and then use
-this R package. This method is ideal for you if you simply want to leverage our existing functions and data sets in your
-own work.
+You can type the following command in your R development environment if you want to want to install and then use this R
+package. This method is ideal if you plan to leverage our existing functions and data sets in your own work. This is
+also the code that we use in the RMarkdown file found in the
+[gkapfham/ast2016-paper](http://github.com/gkapfham/ast2016-paper) repository.
 
 ```shell
 devtools::install_github("gkapfham/virtualmutationanalysis")
 ```
 
 If you are interested in extending this package with new data sets and your own functions, then you can run the
-following commands to first clone this repository:
+following command to first clone this repository:
 
 ```shell
 git clone git@github.com:gkapfham/virtualmutationanalysis.git
