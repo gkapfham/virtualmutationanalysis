@@ -1,4 +1,4 @@
-# sbst2016-paper
+# virtualmutationanalysis
 
 This repository contains the LaTeX source code and additional resources for a position paper that was accepted for
 publication at the [Ninth International Workshop on Search-Based Software
@@ -7,16 +7,20 @@ provided by the organizers of the workshop and a wide variety of other packages 
 LaTeX distribution such a TeXLive 2015.
 
 You are invited to use this repository as a means for learning more about preparing papers in the field of search-based
-software testing and as a way to investigate the results and writing in our paper. If you find this example useful,
-could I trouble you to star this repository and then acknowledge it in your own research efforts? If you would like to
+software testing and as a way to investigate the results and writing in our paper. 
+
+If you find this example useful,
+could I trouble you to star this repository and then acknowledge it in your own research efforts? 
+
+If you would like to
 learn more about my research program, then you can checkout my
 [gkapfham/research-bibliography](https://github.com/gkapfham/research-bibliography).
 
 Here is a reference for the paper:
 
-> Gregory M. Kapfhammer, Chris J. Wright, and Phil McMinn.
-> Hitchhikers Need Free Vehicles! Shared Repositories for Statistical Analysis in SBST.
-> 9th International Workshop on Search-Based Software Testing (SBST 2016).
+> Phil McMinn, Gregory M. Kapfhammer, and Chris J. Wright.
+> Virtual Mutation Analysis for Relational Database Schemas.
+> 11th International Workshop on Automation of Software Test (AST 2016).
 
 ## Installation Instructions
 
