@@ -2,14 +2,14 @@
 
 This repository contains the replication package for a research paper that was accepted for publication at the [Eleventh
 International Workshop on Automation of Software Test](http://tech.brookes.ac.uk/AST2016/) (AST 2016). In particular,
-the repository contains an R package, written with the [devtools](http://github.com/hadley/devtools) package development
+this repository contains an R package, written with the [devtools](http://github.com/hadley/devtools) package development
 framework.
 
 This R package contains all of the data sets that are presented in a polished form in our AST 2016 paper.  It also
 provides all of the R source code to read in and summarize the data sets, perform the necessary data manipulations,
-statistically analyze the results, and create the final summary tables and data visualizations. Finally, the R packages
-comes with a test suite for all of these functions that mitigates the threats to the validity of the experimental
-results presented in the AST 2016 paper.
+statistically analyze the results, and create the final summary tables and data visualizations. As a way to mitigate the
+threats to the validity of the experimental results presented in the AST 2016 paper, the R package comes with a test
+suite for all of these functions.
 
 You are invited to use this repository
 
