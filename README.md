@@ -11,10 +11,10 @@ statistically analyze the results, and create the final summary tables and data 
 threats to the validity of the experimental results presented in the AST 2016 paper, the R package comes with a test
 suite for all of these functions.
 
-You are invited to use this repository
-
-If you find this example useful, could I trouble you to star this repository and then acknowledge it in your own
-research efforts?  If you would like to learn more about my research program, then you can checkout my
+You are invited to use this repository to replicate the experimental results presented in the AST 2016 paper. In
+addition, you can use the provide data and functions to conduct new analyses and experiments.  If you find this
+replication package useful, could I trouble you to star this repository and then acknowledge it in your own research
+efforts?  If you would like to learn more about my research program and cite the AST 2016 paper, then you can view my
 [gkapfham/research-bibliography](https://github.com/gkapfham/research-bibliography).
 
 Here is a reference for the paper:
