@@ -15,7 +15,7 @@ You are invited to use this repository to replicate the experimental results pre
 addition, you can use the provide data and functions to conduct new analyses and experiments.  If you find this
 replication package useful, could I trouble you to star this repository and then acknowledge it in your own research
 efforts?  If you would like to learn more about my research program and cite the AST 2016 paper, then you can view my
-[gkapfham/research-bibliography](https://github.com/gkapfham/research-bibliography).
+[gkapfham/research-bibliography](https://github.com/gkapfham/research-bibliography) repository.
 
 Here is a reference for the paper:
 
@@ -49,7 +49,7 @@ following command to first clone this repository:
 git clone git@github.com:gkapfham/virtualmutationanalysis.git
 ```
 
-Now, you can run each of the following commands to build and test the R packages using `devtools`:
+In an R shell you can run each of the following commands to build and test the R packages using `devtools`:
 
 ```shell
 devtools::document()
@@ -88,5 +88,6 @@ transform-mutationtime-thresholding : ............
 
 ## Troubleshooting
 
-If you are unable to compile the paper with your development tools and your execution environment, then please open a
-new issue and I will attempt to resolve your concerns. Feedback is welcomed and appreciated!
+If you are unable to install the R package with `devtools` and your version of R and your execution environment, then
+please open a new issue and I will attempt to resolve your concerns. Of course, your feedback is welcomed and
+appreciated!
