@@ -3,22 +3,25 @@ Title: Analysis of the Virtual Mutation Data
 Version: 0.0.0.9000
 Authors@R: person("Gregory", "Kapfhammer", email = "gkapfham@allegheny.edu", role = c("aut", "cre"))
 Description: Analysis of the Virtual Mutation Data
-Depends: R (>= 3.2.2),
-  plyr,
-  dplyr,
-  readr,
-  ggplot2,
-  magrittr,
-  broom
+Depends:
+    R (>= 3.2.2),
+    plyr,
+    dplyr,
+    readr,
+    ggplot2,
+    magrittr,
+    broom
 License: GPL
 LazyData: true
 Imports:
-  plyr,
-  dplyr,
-  readr,
-  ggplot2,
-  magrittr,
-  broom,
-  tidyr,
-  RColorBrewer
-Suggests: testthat
+    plyr,
+    dplyr,
+    readr,
+    ggplot2,
+    magrittr,
+    broom,
+    tidyr,
+    RColorBrewer
+Suggests:
+    testthat
+RoxygenNote: 5.0.1
