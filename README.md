@@ -1,4 +1,4 @@
-# virtualmutationanalysis
+# vmutation-replicate
 
 This repository contains the replication package for a research paper that was accepted for publication at the [Eleventh
 International Workshop on Automation of Software Test](http://tech.brookes.ac.uk/AST2016/) (AST 2016). In particular,
